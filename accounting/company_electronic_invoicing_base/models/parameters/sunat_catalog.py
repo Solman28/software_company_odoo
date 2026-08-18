@@ -68,6 +68,24 @@ class SunatCatalog51(models.Model):
     code = fields.Char("Código")
     available_factura = fields.Boolean("Factura")
     available_boleta = fields.Boolean("Boleta")
+
+class SunatCatalog03(models.Model):
+    _name = "sunat.catalog.03"
+    _description = "Unidades de medida comerciales (SUNAT)"
+    _order = "code"
+
+    active = fields.Boolean("Activo", default=True)
+    name = fields.Char("Descripción", required=True)
+    code = fields.Char("Código", required=True)
+
+    _sql_constraints = [
+        ('code_uniq', 'unique(code)', 'El código tiene que ser único!'),
+    ]
+
+    @api.depends('code', 'name')
+    def _compute_display_name(self):
+        for record in self:
+            record.display_name = f"[{record.code}] {record.name}"
     
         
 

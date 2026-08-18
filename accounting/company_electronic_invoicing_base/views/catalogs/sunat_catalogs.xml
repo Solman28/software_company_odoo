@@ -119,8 +119,34 @@
         <field name="domain">['|',('active','=',True),('active','=',False)]</field>
     </record>
     
+    <!-- Unidades de medida comerciales -->
+    <record id="view_tree_catalog_03" model="ir.ui.view">
+        <field name="name">view.tree.catalog.03</field>
+        <field name="model">sunat.catalog.03</field>
+        <field name="arch" type="xml">
+            <list editable="top" decoration-muted="active==False">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_view_catalog_03" model="ir.actions.act_window">
+        <field name="name">Catg 03 - Unidades de Medida</field>
+        <field name="res_model">sunat.catalog.03</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_tree_catalog_03"/>
+        <field name="domain">['|',('active','=',True),('active','=',False)]</field>
+    </record>
+
     <!-- Menús -->
     <menuitem id="menu_sunat_catalogs" name="Catálogos de Sunat" parent="account.menu_finance_configuration">
+
+        <menuitem id="menu_sunat_catalog_03"
+                    name="Catg 03 - Unidades de Medida"
+                    sequence="5"
+                    action="action_view_catalog_03"/>
 
         <menuitem id="menu_sunat_catalog_51"
                     name="Catg 51 - Código de tipo de operación"

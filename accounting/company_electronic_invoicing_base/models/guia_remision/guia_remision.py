@@ -25,7 +25,8 @@ codigo_unidades_de_medida = [
 	"KTM",
 	"M52",
 	"OZ",  #ONZA METALES PRECIOSOS
-	"QTI"
+	"QTI",
+	"ZZ"   #UNIDAD DE SERVICIO
 ]
 
 codigo_dam = [
@@ -934,7 +935,7 @@ class GuiaRemision(models.Model):
 				errors.append(
 					"* La unidad de medida del producto [{}] esta vacía".format(line.product_id.name))
 			else:
-				code = (uom.l10n_pe_edi_measure_unit_code or '').upper()
+				code = (uom.l10n_pe_edi_measure_unit_code.code or '').upper()
 				if not code:
 					errors.append(
 						"* La unidad de medida del producto [{}] no tiene un código asociado. Comuníquese con su Administrador del Sistema.".format(line.product_id.name))

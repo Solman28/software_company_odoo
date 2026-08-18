@@ -94,6 +94,25 @@
         <field name="perm_write" eval="0"/>
         <field name="perm_unlink" eval="0"/>
     </record>
+    <!-- Catg 03 - Unidades de medida comerciales -->
+    <record model="ir.model.access" id="access_model_sunat_catalog_03_manager">
+        <field name="name">access.model.sunat.catalog.03.manager</field>
+        <field name="model_id" ref="model_sunat_catalog_03"/>
+        <field name="group_id" ref="account.group_account_manager"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    <record model="ir.model.access" id="access_model_sunat_catalog_03_user">
+        <field name="name">access.model.sunat.catalog.03.user</field>
+        <field name="model_id" ref="model_sunat_catalog_03"/>
+        <field name="group_id" ref="account.group_account_invoice"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
     <!-- Registro de envío de comprobantes -->
     <record model="ir.model.access" id="access_model_account_log_status">
         <field name="name">access.model.account.log.status</field>

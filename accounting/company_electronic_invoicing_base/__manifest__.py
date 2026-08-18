@@ -48,6 +48,7 @@
         "cron/validez_comprobante_cron.xml",
         "data/l10n.xml",
         "data/catalogs.xml",
+        "data/catalog_03.xml",
         "data/detraction.xml",
         "data/transfer_reason.xml",
         "data/transport_type.xml",

@@ -1,0 +1,24 @@
+<odoo noupdate="1">
+    <!-- Catálogo N°03 SUNAT: Unidades de Medida Comerciales -->
+    <record id="catalog_03_ZZ" model="sunat.catalog.03"><field name="code">ZZ</field><field name="name">Unidad de Servicio</field></record>
+    <record id="catalog_03_NIU" model="sunat.catalog.03"><field name="code">NIU</field><field name="name">Unidad (Bienes)</field></record>
+    <record id="catalog_03_DAY" model="sunat.catalog.03"><field name="code">DAY</field><field name="name">Día</field></record>
+    <record id="catalog_03_CY" model="sunat.catalog.03"><field name="code">CY</field><field name="name">Cilindro</field></record>
+    <record id="catalog_03_HUR" model="sunat.catalog.03"><field name="code">HUR</field><field name="name">Hora</field></record>
+    <record id="catalog_03_LTR" model="sunat.catalog.03"><field name="code">LTR</field><field name="name">Litro</field></record>
+    <record id="catalog_03_CMT" model="sunat.catalog.03"><field name="code">CMT</field><field name="name">Centímetro</field></record>
+    <record id="catalog_03_GLL" model="sunat.catalog.03"><field name="code">GLL</field><field name="name">Galón (US)</field></record>
+    <record id="catalog_03_GRM" model="sunat.catalog.03"><field name="code">GRM</field><field name="name">Gramo</field></record>
+    <record id="catalog_03_KGM" model="sunat.catalog.03"><field name="code">KGM</field><field name="name">Kilogramo</field></record>
+    <record id="catalog_03_LBR" model="sunat.catalog.03"><field name="code">LBR</field><field name="name">Libra</field></record>
+    <record id="catalog_03_MTR" model="sunat.catalog.03"><field name="code">MTR</field><field name="name">Metro</field></record>
+    <record id="catalog_03_ONZ" model="sunat.catalog.03"><field name="code">ONZ</field><field name="name">Onza Comercial</field></record>
+    <record id="catalog_03_FOT" model="sunat.catalog.03"><field name="code">FOT</field><field name="name">Pie</field></record>
+    <record id="catalog_03_INH" model="sunat.catalog.03"><field name="code">INH</field><field name="name">Pulgada</field></record>
+    <record id="catalog_03_DPC" model="sunat.catalog.03"><field name="code">DPC</field><field name="name">Docena de Piezas</field></record>
+    <record id="catalog_03_TNE" model="sunat.catalog.03"><field name="code">TNE</field><field name="name">Tonelada Métrica</field></record>
+    <record id="catalog_03_KTM" model="sunat.catalog.03"><field name="code">KTM</field><field name="name">Kilómetro</field></record>
+    <record id="catalog_03_M52" model="sunat.catalog.03"><field name="code">M52</field><field name="name">Miligramo</field></record>
+    <record id="catalog_03_OZ" model="sunat.catalog.03"><field name="code">OZ</field><field name="name">Onza (Metales Preciosos)</field></record>
+    <record id="catalog_03_QTI" model="sunat.catalog.03"><field name="code">QTI</field><field name="name">Kilogramo por Milímetro de ancho</field></record>
+</odoo>

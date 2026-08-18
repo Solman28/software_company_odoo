@@ -1041,7 +1041,7 @@ class AccountMove(models.Model):
 				if not uom:
 					errors.append(f"* El producto {name} no tiene unidad de medida seleccionada.")
 				else:
-					sunat_uom_code = (uom.l10n_pe_edi_measure_unit_code or '').strip()
+					sunat_uom_code = (uom.l10n_pe_edi_measure_unit_code.code or '').strip()
 					if not sunat_uom_code:
 						errors.append(
 							f"* El producto {name} no tiene código SUNAT de unidad de medida.")

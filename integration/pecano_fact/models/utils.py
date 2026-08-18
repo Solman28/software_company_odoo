@@ -383,7 +383,7 @@ def get_items_guide(guide, body):
     for index, item in enumerate(guide.guia_remision_line_ids, start=1):
         if item.product_id.type in ['product','consu']:
             # [ IMPORTACIÓN | EXPORTACIÓN ]
-            unidad_medida = replace_false(item.uom_id.l10n_pe_edi_measure_unit_code)
+            unidad_medida = replace_false(item.uom_id.l10n_pe_edi_measure_unit_code.code)
             if motivo_traslado.jnq_code_pecanofact in ('8', '9'):
                 unidad_medida = replace_false(item.uom_id.code_dam)
             line = {
@@ -1225,7 +1225,7 @@ def get_request_invoice_body(document):
         line = {
             'IdItem': i,
             'CodigoProducto': replace_false(item.product_id.default_code),
-            'UnidadMedida': replace_false(item.product_uom_id.l10n_pe_edi_measure_unit_code) if item.product_id.type != 'service' else 'ZZ',
+            'UnidadMedida': replace_false(item.product_uom_id.l10n_pe_edi_measure_unit_code.code) if item.product_id.type != 'service' else 'ZZ',
         }
         product_description = replace_false(item.product_id.name)[0:500].strip().replace("\n", " ")
         if invoice_type_code in ['01', '03']:
