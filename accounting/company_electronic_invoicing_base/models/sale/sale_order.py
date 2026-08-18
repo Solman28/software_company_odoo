@@ -59,10 +59,21 @@ class SaleOrder(models.Model):
 	@api.depends('warehouse_id', 'company_id', 'tipo_documento')
 	def _compute_suitable_journal_ids(self):
 		for order in self:
-			if order.warehouse_id and order.warehouse_id.journal_ids and order.tipo_documento:
-				order.suitable_journal_ids = order.warehouse_id.journal_ids.filtered(lambda j: j.invoice_type_code == order.tipo_documento and j.type == "sale")
-			else:
+			if not order.tipo_documento:
 				order.suitable_journal_ids = False
+				continue
+			domain = [
+				('company_id', '=', order.company_id.id),
+				('invoice_type_code', '=', order.tipo_documento),
+				('type', '=', 'sale'),
+			]
+			journal_ids = self.env['account.journal'].search(domain)
+			# El almacén solo restringe la lista si tiene "Series permitidas"
+			# configuradas explícitamente; si no, se listan todas las series
+			# electrónicas de la compañía para ese tipo de comprobante.
+			if order.warehouse_id and order.warehouse_id.journal_ids:
+				journal_ids = journal_ids.filtered(lambda j: j in order.warehouse_id.journal_ids)
+			order.suitable_journal_ids = journal_ids
 	
 	@api.depends('partner_id', 'partner_invoice_id.l10n_latam_identification_type_id.l10n_pe_vat_code')
 	def _compute_tipo_documento(self):
