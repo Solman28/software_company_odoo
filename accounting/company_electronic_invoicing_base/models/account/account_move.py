@@ -1321,7 +1321,13 @@ class AccountMove(models.Model):
 		for subtotals in totals.get('subtotals', []):
 			for tax_group in subtotals.get('tax_groups', []):
 				tax_group_id = self.env['account.tax.group'].browse(tax_group['id'])
-				edi_code = tax_group_id.l10n_pe_edi_code.upper()
+				edi_code = (tax_group_id.l10n_pe_edi_code or '').upper()
+				if not edi_code:
+					raise UserError(
+						f"El grupo de impuesto '{tax_group_id.name}' no tiene configurado el Código EDI "
+						"(IGV/EXO/INA/ISC/ICBPER/FACTURA GRATUITA). Configuralo en Invoicing → "
+						"Configuración → Impuestos → Grupos de impuestos."
+					)
 				base = tax_group.get('base_amount', 0.0)
 				amount = tax_group.get('tax_amount', 0.0)
 
