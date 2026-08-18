@@ -1186,7 +1186,8 @@ def get_request_invoice_body(document):
     # [ DOCUMENTO: DOCUMENTOS RELACIONADOS ]
     # [ GUIAS DE REMISION ]
     guides = []
-    for i, item in enumerate(document.guia_remision_ids, start=1):
+    related_guides = document.env['guia.remision'].search([('comprobante_pago_ids', 'in', document.id)])
+    for i, item in enumerate(related_guides, start=1):
         # 70 : Remitente
         # 80: Transportista
         guides.append({
