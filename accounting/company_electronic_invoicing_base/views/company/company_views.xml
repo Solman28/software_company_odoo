@@ -9,6 +9,7 @@
                     <group>
                         <field name="electronic_invoicing_type_environment" string="Tipo de envío" required="1"/>
                         <field name="sunat_provider" string="Proveedor"/>
+                        <field name="l10n_pe_edi_address_type_code" string="Código de establecimiento SUNAT"/>
                     </group>
                 </page>
                 <page name="validate_cpe" string="Validez CPE Sunat">
