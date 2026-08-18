@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id='data_low_communication' model='account.parameters'>
+            <field name="name">Envío para comunicación de baja</field>
+            <field name="code">low_communication</field>
+            <field name="duration">7</field>
+            <field name="measure_time">day</field>
+        </record>
+
+        <record id='data_minimum_retention_amount' model='account.parameters'>
+            <field name="name">Monto mínimo para aplicar retencion</field>
+            <field name="code">minimum_retention_amount</field>
+            <field name="duration">700</field>
+            <field name="measure_time">currency</field>
+        </record>
+
+        <record id='data_minimum_detraction_amount' model='account.parameters'>
+            <field name="name">Monto mínimo para aplicar detracción</field>
+            <field name="code">minimum_detraction_amount</field>
+            <field name="duration">700</field>
+            <field name="measure_time">currency</field>
+        </record>
+
+        <record id='data_mandatory_identification' model='account.parameters'>
+            <field name="name">Monto máximo para documento de identidad obligatorio</field>
+            <field name="code">mandatory_identification</field>
+            <field name="duration">700</field>
+            <field name="measure_time">currency</field>
+        </record>
+    </data>
+</odoo>

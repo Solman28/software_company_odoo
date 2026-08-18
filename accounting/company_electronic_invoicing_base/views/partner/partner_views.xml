@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_partner_form_ubigeo" model="ir.ui.view">
+        <field name="name">view_partner_form_ubigeo</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group[1]/div" position="after">
+                <field name="ubigeo" invisible="0" readonly="1" force_save="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_partner_gre" model="ir.ui.view">
+        <field name="name">view.partner.gre</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+           <page name="accounting" position="after">
+                <page string="Guia de Remisión Electrónica" name="gre_information" invisible="'PE' not in fiscal_country_codes">
+                    <group>
+                        <group string="Contacto">
+                            <field name="is_driver" string="¿Es conductor?" invisible="company_type != 'person'"/>
+                            <field name="is_transport_company" string="¿Es empresa de transporte?" invisible="company_type != 'company'"/>
+                            <field name="is_headquarters" string="¿Es una sede?" invisible="company_type != 'company'"/>
+                        </group>
+                        <group string="Información del transporte" invisible="company_type != 'company'">
+                            <!-- <field name="l10n_pe_edi_mtc_number" required="is_transport_company"/> -->
+                            <field name="mtc_ids">
+                                <list>
+                                    <field name="mtc_number"/>
+                                    <field name="modality"/>
+                                    <field name="valid_until"/>
+                                    <field name="state"/>
+                                </list>
+                                <form>
+                                    <group>
+                                        <field name="mtc_number"/>
+                                        <field name="modality"/>
+                                        <field name="valid_until"/>
+                                        <field name="state"/>
+                                    </group>
+                                </form>
+                            </field>
+                            <field name="l10n_pe_edi_authorization_issuing_entity"/>
+                            <!-- <field name="l10n_pe_edi_authorization_number"/> -->
+                        </group>
+                        <group string="Información del conductor" invisible="not is_driver">
+                            <field name="l10n_pe_edi_operator_license" string="Licencia de conducir" required="is_driver"/>
+                        </group>
+                    </group>
+                </page>
+           </page>
+        </field>
+    </record>
+
+    <record id="view_partner_property_form" model="ir.ui.view">
+        <field name="name">res.partner.retention.config</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales_purchases']" position="inside">
+                <group>
+                    <group name="retention" string="Régimen de IGV">
+                        <field name="is_retention_agent" string="Agente de retención"/>
+                        <field name="retention_percentage" string="Retención(%)" invisible="not is_retention_agent" required="is_retention_agent"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

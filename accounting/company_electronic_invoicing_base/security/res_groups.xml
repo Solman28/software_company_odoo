@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Special access rights-->
+    <!-- Anulacion de documentos -->
+    <record id="res_groups_anulacion_buttons" model="res.groups">
+        <field name="name">Permitir Anulación de Comprobantes</field>
+    </record>
+    <!-- Validez de comprobante de venta -->
+    <record id="group_validate_cpe_sale_sunat" model="res.groups">
+        <field name="name">Consultar validez de comprobantes de venta en sunat</field>
+    </record>
+    <record model="ir.model.access" id="access_model_comunicacion_baja">
+        <field name="name">access.model.account.comunicacion.baja</field>
+        <field name="model_id" ref="model_account_comunicacion_baja"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_unlink">1</field>
+        <field name="perm_create">1</field>
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+    <!-- Catg 54 - Detracciones -->
+    <record model="ir.model.access" id="access_model_sunat_catalog_54_manager">
+        <field name="name">access.model.sunat.catalog.54.manager</field>
+        <field name="model_id" ref="model_sunat_catalog_54"/>
+        <field name="group_id" ref="account.group_account_manager"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    <record model="ir.model.access" id="access_model_sunat_catalog_54_user">
+        <field name="name">access.model.sunat.catalog.54.user</field>
+        <field name="model_id" ref="model_sunat_catalog_54"/>
+        <field name="group_id" ref="account.group_account_invoice"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+    <!-- Catg 53 - Descuentos,Cargos y Deducciones -->
+    <record model="ir.model.access" id="access_model_sunat_catalog_53_manager">
+        <field name="name">access.model.sunat.catalog.53.manager</field>
+        <field name="model_id" ref="model_sunat_catalog_53"/>
+        <field name="group_id" ref="account.group_account_manager"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    <record model="ir.model.access" id="access_model_sunat_catalog_53_user">
+        <field name="name">access.model.sunat.catalog.53.user</field>
+        <field name="model_id" ref="model_sunat_catalog_53"/>
+        <field name="group_id" ref="account.group_account_invoice"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+    <!-- Catg 51 - Código de tipo de operación -->
+    <record model="ir.model.access" id="access_model_sunat_catalog_51_manager">
+        <field name="name">access.model.sunat.catalog.51.manager</field>
+        <field name="model_id" ref="model_sunat_catalog_51"/>
+        <field name="group_id" ref="account.group_account_manager"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    <record model="ir.model.access" id="access_model_sunat_catalog_51_user">
+        <field name="name">access.model.sunat.catalog.51.user</field>
+        <field name="model_id" ref="model_sunat_catalog_51"/>
+        <field name="group_id" ref="account.group_account_invoice"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+    <!-- Catg 59 - Medios de Pago -->
+    <record model="ir.model.access" id="access_model_sunat_catalog_59_manager">
+        <field name="name">access.model.sunat.catalog.59.manager</field>
+        <field name="model_id" ref="model_sunat_catalog_59"/>
+        <field name="group_id" ref="account.group_account_manager"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    <record model="ir.model.access" id="access_model_sunat_catalog_59_user">
+        <field name="name">access.model.sunat.catalog.59.user</field>
+        <field name="model_id" ref="model_sunat_catalog_59"/>
+        <field name="group_id" ref="account.group_account_invoice"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+    <!-- Registro de envío de comprobantes -->
+    <record model="ir.model.access" id="access_model_account_log_status">
+        <field name="name">access.model.account.log.status</field>
+        <field name="model_id" ref="model_account_log_status"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_unlink">0</field>
+        <field name="perm_create">1</field>
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+    <!-- Registro de observaciones de envío de comprobantes -->
+    <record model="ir.model.access" id="access_model_account_log_status_observation">
+        <field name="name">access.model.account.log.status.observation</field>
+        <field name="model_id" ref="model_account_log_status_observation"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_unlink">0</field>
+        <field name="perm_create">1</field>
+        <field name="group_id" ref="base.group_user"/>
+    </record>
+    <!-- EMISIÓN DE DOCS FUERA DE PLAZO -->
+    <record id="group_user_sunat_send_out_date" model="res.groups">
+        <field name="name">Enviar Documentos con mas de 3 días de antiguedad</field>
+        <field name="comment">Enviar Documentos con mas de 3 días de antiguedad</field>        
+    </record>
+    <!-- LINEAS DE TERMINOS DE PAGO -->
+    <record model="ir.model.access" id="acces_model_paymentterm_line">
+        <field name="name">access.model.paymentterm.line</field>
+        <field name="model_id" ref="model_paymentterm_line"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="group_id" ref="account.group_account_invoice"/>
+    </record>
+</odoo>

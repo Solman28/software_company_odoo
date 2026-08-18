@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_form_sale_stock_inherit" model="ir.ui.view">
+        <field name="name">view.form.sale.stock.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='warehouse_id'][2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">view.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="payment_date_due_estimated" readonly="1"/>
+                <field name="warehouse_id" options="{'no_create': True}" force_save="1" readonly="state == 'sale'"/>
+                <field name="journal_id" options="{'no_create': True}" readonly="invoice_count != 0 and state == 'sale'" required="1"/>
+            </xpath>
+            <xpath expr="//group[@name='sale_info']/field[@name='journal_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d']" position="attributes">
+                <attribute name="string">Crear comprobante</attribute>
+            </xpath>
+            <xpath expr="//page[@name='order_lines']" position="after">
+                <field name="payment_term_type" invisible="1"/>
+                <page string="Plazos de pago" invisible="payment_term_type != 'Credito'">
+                    <group>
+                        <group>
+                            <field name="paymentterm_line" always_reload="1" readonly="state != 'draft'">
+                                <list editable="bottom">
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="date_due" string="Fecha de vencimiento"/>
+                                    <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </list>
+                            </field>
+                        </group>
+                        <group>
+                            <field name="residual_credit_paymentterm"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

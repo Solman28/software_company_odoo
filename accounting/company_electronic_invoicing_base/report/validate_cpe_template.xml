@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="cpe_validity_template">
+            <t t-call="web.basic_layout">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page" style="font-family: Arial, sans-serif; font-size: 13px; color: #000;">
+                            <!-- Título principal -->
+                            <div style="border: 1px solid #336699; text-align: center; margin: 20px auto 15px auto; width: 55%; padding: 10px;">
+                                <h4 style="margin: 0; font-weight: bold;">
+                                    Consulta Validez del Comprobante<br/>
+                                    de Pago Electrónico
+                                </h4>
+                            </div>
+                            <!-- Cuerpo de resultado -->
+                            <div style="border: 1px solid #336699; margin: 0 auto; width: 55%; padding: 15px;">
+                                <p style="font-weight: bold; font-size:14px; margin-bottom: 2px;">Resultado de la Consulta</p>
+
+                                <t t-set="estado_cp" t-value="o.estado_comprobante_electronico or ''"/>
+                                <t t-set="serie" t-value="(o.name.split('-')[0].replace(' ', '') if o.name and '-' in o.name else '')"/>
+                                <t t-set="numero" t-value="(o.name.split('-')[1].replace(' ', '') if o.name and '-' in o.name else '')"/>
+
+                                <t t-if="o.move_type == 'in_invoice'">
+                                    <t t-set="cod_cp" t-value="o.l10n_latam_document_type_id.code"/>
+                                </t>
+                                <t t-else="">
+                                    <t t-set="cod_cp" t-value="o.journal_id.invoice_type_code"/>
+                                </t>
+
+                                <p style="font-weight: bold; margin: 0; font-size:14px;">
+                                    <t t-if="estado_cp == '1_ACEPTADO'">
+                                        <t t-if="cod_cp == '01'">
+                                            La Factura Electrónica <t t-esc="serie"/>-<t t-esc="numero"/> es un comprobante de pago válido.
+                                        </t>
+                                        <t t-elif="cod_cp == '03'">
+                                            La Boleta de Venta Electrónica <t t-esc="serie"/>-<t t-esc="numero"/> es un comprobante de pago válido.
+                                        </t>
+                                    </t>
+                                    <t t-elif="estado_cp == '2_ANULADO'">
+                                        <t t-if="cod_cp == '01'">
+                                            La Factura Electrónica <t t-esc="serie"/>-<t t-esc="numero"/> es un comprobante de pago válido con estado ANULADO.
+                                        </t>
+                                        <t t-elif="cod_cp == '03'">
+                                            La Boleta de Venta Electrónica <t t-esc="serie"/>-<t t-esc="numero"/> es un comprobante de pago válido con estado ANULADO.
+                                        </t>
+                                    </t>
+                                    <t t-elif="estado_cp == '0_NO_EXISTE'">
+                                        <t t-if="cod_cp == '01'">
+                                            La Factura Electrónica <t t-esc="serie"/>-<t t-esc="numero"/> no existe en los registros de SUNAT.
+                                        </t>
+                                        <t t-elif="cod_cp == '03'">
+                                            La Boleta de Venta Electrónica <t t-esc="serie"/>-<t t-esc="numero"/> no existe en los registros de SUNAT.
+                                        </t>
+                                    </t>
+                                    <t t-else="">
+                                        No se encontró información válida del comprobante.
+                                    </t>
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

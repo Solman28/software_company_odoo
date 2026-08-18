@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_guia_remision,access.guia.remision,model_guia_remision,,1,1,1,1
+access_guia_remision_line,access.guia.remision.line,model_guia_remision_line,,1,1,1,1
+access_transfer_reason,access.transfer.reason,model_transfer_reason,,1,1,1,1
+access_transport_type,access.transport.type,model_transport_type,,1,1,1,1
+access_related_document,access.related.document,model_related_document,,1,1,1,1
+access_account_parameters,access.account.parameters,model_account_parameters,,1,1,1,1
+access_account_detraction_base_user,account.detraction,model_account_detraction,base.group_user,1,1,1,0
+access_account_detraction_manager,account.detraction,model_account_detraction,account.group_account_manager,1,1,1,1
+access_res_partner_mtc,access_res_partner_mtc,model_res_partner_mtc,,1,1,1,1
+access_sale_paymentterm_line,access_sale_paymentterm_line,model_sale_paymentterm_line,,1,1,1,1
+access_l10n_pe_edi_vehicle,access.l10n.pe.edi.vehicle,model_l10n_pe_edi_vehicle,,1,1,1,1
+access_sunat_product_code,access.sunat.product.code,model_sunat_product_code,,1,1,1,1

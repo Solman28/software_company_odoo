@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="l10n_pe.it_RUC" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">3</field></record>
+    <record id="l10n_pe.it_DNI" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">1</field></record>
+    <record id="l10n_pe.it_DIC" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">5</field></record>
+    <record id="l10n_pe.it_IDCR" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">6</field></record>
+    <record id="l10n_pe.it_SP" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">11</field></record>
+    <record id="l10n_pe.it_TIN" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">7</field></record>
+    <record id="l10n_pe.it_IN" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">8</field></record>
+    <record id="l10n_pe.it_TAM" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">9</field></record>
+    <record id="l10n_pe.it_PTP" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">10</field></record>
+    <record id="l10n_pe.it_CPP" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">12</field></record>
+    <record id="l10n_pe.it_NDTD" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">0</field></record>
+    <record id="l10n_latam_base.it_fid" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">2</field></record>
+    <record id="l10n_latam_base.it_pass" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">4</field></record>
+    <record id="l10n_latam_base.it_vat" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">3</field></record>
+    <record id="company_electronic_invoicing_base.jnq_it_various_others" model="l10n_latam.identification.type"><field name="jnq_code_pecanofact">0</field></record>
+</odoo>

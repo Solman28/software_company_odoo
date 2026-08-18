@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="company_electronic_invoicing_base.transport_type_01" model="transport.type">
+            <field name="jnq_code_pecanofact">1</field>
+        </record>
+        <record id="company_electronic_invoicing_base.transport_type_02" model="transport.type">
+            <field name="jnq_code_pecanofact">2</field>
+        </record>
+    </data>
+</odoo>

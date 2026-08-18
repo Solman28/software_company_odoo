@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo> 
+    <data>
+        <!--Consulta de Validez de Comprobante-->
+        <record id="ir_cron_consultar_validez_comprobante_pecano" model="ir.cron">
+            <field name="name">CRON Consulta Estado en Pecanofact</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="state">code</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="code">model.cron_action_validez_comprobante_pecano()</field>
+            <field name="user_id" ref="base.user_root"/>
+        </record>
+        <record id="ir_cron_consultar_validez_gre_pecano" model="ir.cron">
+            <field name="name">CRON Consulta Estado GRE en Pecanofact</field>
+            <field name="model_id" ref="company_electronic_invoicing_base.model_guia_remision"/>
+            <field name="state">code</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="code">model.cron_action_validez_gre_pecano()</field>
+            <field name="user_id" ref="base.user_root"/>
+        </record>
+    </data>
+</odoo>

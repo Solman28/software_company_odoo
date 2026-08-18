@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_company_pecano_fact" model="ir.ui.view">
+        <field name="name">Credenciales Pecano Fact</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="company_electronic_invoicing_base.view_company_fe_api_credentials"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sunat_provider']" position="after">
+                <field name="pecano_base_url_prod" string="URL base" invisible="sunat_provider != 'pecanofact' or electronic_invoicing_type_environment != '1'"/>
+                <field name="pecano_key_comercio_prod" string="Key comercio" password="True" invisible="sunat_provider != 'pecanofact' or electronic_invoicing_type_environment != '1'"/>
+                <field name="pecano_base_url_test" string="URL base" invisible="sunat_provider != 'pecanofact' or electronic_invoicing_type_environment != '0'"/>
+                <field name="pecano_key_comercio_test" string="Key comercio" password="True" invisible="sunat_provider != 'pecanofact' or electronic_invoicing_type_environment != '0'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

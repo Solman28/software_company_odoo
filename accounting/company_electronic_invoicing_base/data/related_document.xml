@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <data>
+        <record id="related_document_01" model="related.document">
+            <field name="name">Factura</field>
+            <field name="code">01</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="related_document_03" model="related.document">
+            <field name="name">Boleta</field>
+            <field name="code">03</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="related_document_04" model="related.document">
+            <field name="name">Liquidación de Compra</field>
+            <field name="code">04</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_09" model="related.document">
+            <field name="name">Guía de Remisión Remitente</field>
+            <field name="code">09</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="related_document_12" model="related.document">
+            <field name="name">Ticket o cinta emitido por máquina registradora</field>
+            <field name="code">12</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_31" model="related.document">
+            <field name="name">Guía de Remisión Transportista</field>
+            <field name="code">31</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_48" model="related.document">
+            <field name="name">Comprobante de Operaciones – Ley N° 29972</field>
+            <field name="code">48</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_49" model="related.document">
+            <field name="name">Constancia de Depósito - IVAP (Ley 28211)</field>
+            <field name="code">49</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_50" model="related.document">
+            <field name="name">Declaración Aduanera de Mercancías</field>
+            <field name="code">50</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_52" model="related.document">
+            <field name="name">Declaración Simplificada (DS)</field>
+            <field name="code">52</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_65" model="related.document">
+            <field name="name">Autorización de Circulación para transportar MATPEL – Callao</field>
+            <field name="code">65</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_66" model="related.document">
+            <field name="name">Autorización de Circulación para transporte de carga y mercancías en Lima Metropolitana</field>
+            <field name="code">66</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_67" model="related.document">
+            <field name="name">Permiso de Operación Especial para el servicio de transporte de MATPEL - MTC</field>
+            <field name="code">67</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_68" model="related.document">
+            <field name="name">Habilitación Sanitaria de Transporte Terrestre de Productos Pesqueros y Acuícolas</field>
+            <field name="code">68</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_69" model="related.document">
+            <field name="name">Permiso / Autorización de operación de transporte de mercancías</field>
+            <field name="code">69</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_71" model="related.document">
+            <field name="name">Resolución de Adjudicación de bienes – SUNAT</field>
+            <field name="code">71</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_72" model="related.document">
+            <field name="name">Resolución de Comiso de bienes – SUNAT</field>
+            <field name="code">72</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_73" model="related.document">
+            <field name="name">Guía de Transporte Forestal o de Fauna - SERFOR	</field>
+            <field name="code">73</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_74" model="related.document">
+            <field name="name">Guía de Tránsito – SUCAMEC</field>
+            <field name="code">74</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_75" model="related.document">
+            <field name="name">Autorización para operar como empresa de Saneamiento Ambiental – MINSA -</field>
+            <field name="code">75</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_76" model="related.document">
+            <field name="name">Autorización para manejo y recojo de residuos sólidos peligrosos y no peligrosos</field>
+            <field name="code">76</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_77" model="related.document">
+            <field name="name">Certificado fitosanitario la movilización de plantas, productos vegetales, y otros artículos reglamentados</field>
+            <field name="code">77</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_78" model="related.document">
+            <field name="name">Registro Único de Usuarios y Transportistas de Alcohol Etílico</field>
+            <field name="code">78</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_80" model="related.document">
+            <field name="name">Constancia de Depósito – Detracción</field>
+            <field name="code">80</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_81" model="related.document">
+            <field name="name">Código de autorización emitida por el SCOP</field>
+            <field name="code">81</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_82" model="related.document">
+            <field name="name">Declaración jurada de mudanza</field>
+            <field name="code">82</field>
+            <field name="active" eval="False"/>
+        </record>
+        <record id="related_document_91" model="related.document">
+            <field name="name">Manifiesto de carga (MC)</field>
+            <field name="code">91</field>
+            <field name="active" eval="False"/>
+        </record>
+    </data>
+</odoo>

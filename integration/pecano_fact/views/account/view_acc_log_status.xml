@@ -1,0 +1,14 @@
+<odoo>
+    <record id="view_form_account_log_status_pecanofact" model="ir.ui.view">
+        <field name="name">view.form.account.log.status.pecanofact</field>
+        <field name="model">account.log.status</field>
+        <field name="inherit_id" ref="company_electronic_invoicing_base.view_form_account_log_status"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sunat']" position="after">
+                <group string='PECANOFACT' name="pecanofact">
+                    <field name="status_pecanofact" string='Estado CPE'/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

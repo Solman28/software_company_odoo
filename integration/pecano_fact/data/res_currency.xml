@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="base.PEN" model="res.currency"><field name="jnq_code_pecanofact">1</field></record>
+    <record id="base.USD" model="res.currency"><field name="jnq_code_pecanofact">2</field></record>
+</odoo>

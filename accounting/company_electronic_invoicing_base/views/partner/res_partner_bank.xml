@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_bank_form_detraction_config" model="ir.ui.view">
+        <field name="name">res.partner.bank.form.detraction.config</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="is_bank_detraction_account"/>
+            </field>
+            <field name="acc_number" position="after">
+                <field name="interbank_acc_number"/>
+            </field>
+            <field name="allow_out_payment" position="after">
+                <field name="show_in_invoice" widget="boolean_toggle" string="Mostrar en comprobante de venta"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_partner_bank_tree_inherit" model="ir.ui.view">
+        <field name="name">res.partner.bank.tree.inherit</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_tree"/>
+        <field name="arch" type="xml">
+            <field name="allow_out_payment" position="after">
+                <field name="show_in_invoice" widget="boolean_toggle" string="Mostrar en comprobante de venta"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_partner_property_form_detraction_config" model="ir.ui.view">
+        <field name="name">view.partner.property.form.detraction.config</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='banks']/field[@name='bank_ids']/list" position="inside">
+                <field name="is_bank_detraction_account"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="company_electronic_invoicing_base.related_document_01" model="related.document">
+            <field name="jnq_code_pecanofact">1</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_03" model="related.document">
+            <field name="jnq_code_pecanofact">3</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_04" model="related.document">
+            <field name="jnq_code_pecanofact">4</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_09" model="related.document">
+            <field name="jnq_code_pecanofact">9</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_12" model="related.document">
+            <field name="jnq_code_pecanofact">12</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_31" model="related.document">
+            <field name="jnq_code_pecanofact">31</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_48" model="related.document">
+            <field name="jnq_code_pecanofact">48</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_50" model="related.document">
+            <field name="jnq_code_pecanofact">50</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_52" model="related.document">
+            <field name="jnq_code_pecanofact">52</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_65" model="related.document">
+            <field name="jnq_code_pecanofact">65</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_66" model="related.document">
+            <field name="jnq_code_pecanofact">66</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_67" model="related.document">
+            <field name="jnq_code_pecanofact">67</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_68" model="related.document">
+            <field name="jnq_code_pecanofact">68</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_69" model="related.document">
+            <field name="jnq_code_pecanofact">69</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_80" model="related.document">
+            <field name="jnq_code_pecanofact">80</field>
+        </record>
+        <record id="company_electronic_invoicing_base.related_document_82" model="related.document">
+            <field name="jnq_code_pecanofact">82</field>
+        </record>
+    </data>
+</odoo>

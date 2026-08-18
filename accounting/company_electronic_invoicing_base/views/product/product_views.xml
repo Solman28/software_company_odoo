@@ -1,0 +1,18 @@
+<odoo>
+    <record id="product_template_pe_edi_inherit" model="ir.ui.view">
+        <field name="name">product.template.pe.edi.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']" position="after">
+                <page string="Perú" name="pe_edi" invisible="'PE' not in fiscal_country_codes">
+                    <group>
+                        <field name="detraction_id"/>
+                        <field name="detraction_percentage" invisible="not detraction_id"/>
+                        <field name="sunat_code"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

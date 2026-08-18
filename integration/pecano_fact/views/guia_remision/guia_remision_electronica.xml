@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_form_guia_remision_pecanofact" model="ir.ui.view">
+        <field name="name">view.form.guia.remision.pecanofact</field>
+        <field name="model">guia.remision</field>
+        <field name="inherit_id" ref="company_electronic_invoicing_base.view_form_guia_remision"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_validate']" position="before">
+                <button 
+                    name="action_check_gre" 
+                    string="Consulta Validez GRE" 
+                    type="object" 
+                    class="oe_highlight"
+                    help="Consultar validez de GRE" 
+                    invisible="state != 'validated'"/>
+            </xpath>
+            <xpath expr="//div[@name='estado_emision']" position="after"> 
+                <div class="alert alert-primary" role="alert" style="margin-bottom:0px;" invisible="status_pecanofact != '0'">
+                    Documento con estado:
+                    <bold>
+                        <a class="alert-link" href="#top" role="button">EN PROCESO</a>
+                    </bold>
+                </div>
+                <div class="alert alert-success" role="alert" style="margin-bottom:0px;" invisible="status_pecanofact != '1'">
+                    Documento con estado:
+                    <bold>
+                        <a class="alert-link" href="#top" role="button">ACEPTADO</a>
+                    </bold>
+                </div>
+                <div class="alert alert-warning" role="alert" style="margin-bottom:0px;" invisible="status_pecanofact != '2'">
+                    Documento con estado:
+                    <bold>
+                        <a class="alert-link" href="#top" role="button">ANULADO</a>
+                    </bold>
+                </div>
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" invisible="status_pecanofact != '3'">
+                    Documento con estado:
+                    <bold>
+                        <a class="alert-link" href="#top" role="button">RECHAZADO</a>
+                    </bold>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='estado_gre_sunat']" position="after">
+                <field name="status_pecanofact" string="Estado en PecanoFact" help="Estado del comprobante en pecanofact"/>
+            </xpath>
+            <xpath expr="//group[@name='guide_validity']" position="after">
+               <group string="Archivos adjuntos">
+                    <field name="guide_pdf_file_name" invisible="1"/>
+                    <field name="guide_xml_file_name" invisible="1"/>
+                    <field name="guide_cdr_file_name" invisible="1"/>
+                    <field name="guide_pdf_file" string='PDF' filename="guide_pdf_file_name" widget="binary" readonly="1"/>
+                    <field name="guide_xml_file" string="XML" filename="guide_xml_file_name" widget="binary" readonly="1"/>
+                    <field name="guide_cdr_file" string="CDR" filename="guide_cdr_file_name" widget="binary" readonly="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_tree_guia_remision_pecanofact" model="ir.ui.view">
+        <field name="name">view.tree.guia.remision.pecanofact</field>
+        <field name="model">guia.remision</field>
+        <field name="inherit_id" ref="company_electronic_invoicing_base.view_tree_guia_remision"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='estado_gre_sunat']" position="after">
+                <field name="status_pecanofact" string="Estado en PecanoFact" widget="badge"
+                    decoration-info="status_pecanofact == '0'"
+                    decoration-success="status_pecanofact == '1'"
+                    decoration-warning="status_pecanofact == '2'"
+                    decoration-danger="status_pecanofact == '3'"/>
+            </xpath>
+            <xpath expr="//list" position="attributes">
+                <attribute name="decoration-danger">status_pecanofact == '3'</attribute>
+                <attribute name="decoration-success">status_pecanofact == '1'</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_tree_guia_remision_remitente_pecanofact" model="ir.ui.view">
+        <field name="name">view.tree.guia.remision.remitente.pecanofact</field>
+        <field name="model">guia.remision</field>
+        <field name="inherit_id" ref="company_electronic_invoicing_base.view_tree_guia_remision_remitente"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='estado_gre_sunat']" position="after">
+                <field name="status_pecanofact" string="Estado en PecanoFact" widget="badge"
+                    decoration-info="status_pecanofact == '0'"
+                    decoration-success="status_pecanofact == '1'"
+                    decoration-warning="status_pecanofact == '2'"
+                    decoration-danger="status_pecanofact == '3'"/>
+            </xpath>
+            <xpath expr="//list" position="attributes">
+                <attribute name="decoration-danger">status_pecanofact == '3'</attribute>
+                <attribute name="decoration-success">status_pecanofact == '1'</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_tree_guia_remision_transportista_pecanofact" model="ir.ui.view">
+        <field name="name">view.tree.guia.remision.transportista.pecanofact</field>
+        <field name="model">guia.remision</field>
+        <field name="inherit_id" ref="company_electronic_invoicing_base.view_tree_guia_remision_transportista"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='estado_gre_sunat']" position="after">
+                <field name="status_pecanofact" string="Estado en PecanoFact" widget="badge"
+                    decoration-info="status_pecanofact == '0'"
+                    decoration-success="status_pecanofact == '1'"
+                    decoration-warning="status_pecanofact == '2'"
+                    decoration-danger="status_pecanofact == '3'"/>
+            </xpath>
+            <xpath expr="//list" position="attributes">
+                <attribute name="decoration-danger">status_pecanofact == '3'</attribute>
+                <attribute name="decoration-success">status_pecanofact == '1'</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

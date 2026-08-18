@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+        <field name="name">view.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_title mb24']/h1" position="replace">
+                <h1>
+                    <field id="company" options="{'line_breaks': False}" widget="text" class="text-break" name="name" default_focus="1" placeholder="e.g. Lumber Inc" invisible="not is_company" required="company_type == 'company'"/>
+                </h1>
+                <h3 invisible="is_company" style="display:flex;">
+                    <field name="names" placeholder="Nombres" no_label="1" style="width:33%;" required="company_type == 'person'"/>
+                    <field name="fathers_last_name" placeholder="Apellido Paterno" no_label="1" style="width:33%;"/>
+                    <field name="mothers_last_name" placeholder="Apellido Materno" no_label="1" style="width:33%;"/>
+                </h3>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_user_form_inherit" model="ir.ui.view">
+        <field name="name">view.user.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">        
+            <xpath expr="//div[@class='oe_title']/h1" position="replace">
+                <field name="name" invisible="True"/>
+                <h3 style="display:flex;">
+                    <field name="names" placeholder="Nombres" no_label="1" style="width:33%;" required="True"/>
+                    <field name="fathers_last_name" placeholder="Apellido Paterno" no_label="1" style="width:33%;"/>
+                    <field name="mothers_last_name" placeholder="Apellido Materno" no_label="1" style="width:33%;"/>
+                </h3>
+            </xpath>
+        </field>
+    </record>
+</odoo>

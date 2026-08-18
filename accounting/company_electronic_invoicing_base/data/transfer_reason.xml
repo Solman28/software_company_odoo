@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="transfer_reason_01" model="transfer.reason">
+            <field name="name">Venta</field>
+            <field name="code">01</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="transfer_reason_02" model="transfer.reason">
+            <field name="name">Compra</field>
+            <field name="code">02</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="transfer_reason_03" model="transfer.reason">
+            <field name="name">Venta con entrega a terceros</field>
+            <field name="code">03</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="transfer_reason_04" model="transfer.reason">
+            <field name="name">Traslado entre establecimientos de la misma empresa</field>
+            <field name="code">04</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="transfer_reason_05" model="transfer.reason">
+            <field name="name">Consignación</field>
+            <field name="code">05</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="transfer_reason_06" model="transfer.reason">
+            <field name="name">Devolución</field>
+            <field name="code">06</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="transfer_reason_07" model="transfer.reason">
+            <field name="name">Recojo de bienes transformados</field>
+            <field name="code">07</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="transfer_reason_08" model="transfer.reason">
+            <field name="name">Importación</field>
+            <field name="code">08</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="transfer_reason_09" model="transfer.reason">
+            <field name="name">Exportación</field>
+            <field name="code">09</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="transfer_reason_13" model="transfer.reason">
+            <field name="name">Otros</field>
+            <field name="code">13</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="transfer_reason_14" model="transfer.reason">
+            <field name="name">Venta sujeta a confirmación del comprador</field>
+            <field name="code">14</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="transfer_reason_17" model="transfer.reason">
+            <field name="name">Traslado de bienes para transformación</field>
+            <field name="code">17</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="transfer_reason_18" model="transfer.reason">
+            <field name="name">Traslado emisor itinerante CP</field>
+            <field name="code">18</field>
+            <field name="active" eval="True"/>
+        </record>
+        <record id="transfer_reason_19" model="transfer.reason">
+            <field name="name">Traslado de mercancía extranjera</field>
+            <field name="code">19</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+
+</odoo>

@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- <record id="view_pdf_electronic_invoice_server_action" model="ir.actions.server">
+        <field name="name">NubeFact: Visualizar PDF</field>
+        <field name="sequence">-1002</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="binding_view_types">form</field>
+        <field name="code">action = records.preview_pdf()</field>
+    </record> -->
+    <record id="generate_pdf_electronic_invoice_server_action" model="ir.actions.server">
+        <field name="name">PecanoFact: Generar PDF</field>
+        <field name="sequence">-1001</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="binding_view_types">form</field>
+        <field name="code">
+            records.generate_pdf()
+        </field>
+    </record>
+    <record id="print_pdf_electronic_invoice_server_action" model="ir.actions.server">
+        <field name="name">PecanoFact: Imprimir PDF</field>
+        <field name="sequence">-1000</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="binding_view_types">form</field>
+        <field name="code">action = records.print_pdf()</field>
+    </record>
+    <record id="print_pdf_electronic_guide_server_action" model="ir.actions.server">
+        <field name="name">PecanoFact: Imprimir PDF</field>
+        <field name="sequence">-1000</field>
+        <field name="model_id" ref="company_electronic_invoicing_base.model_guia_remision"/>
+        <field name="binding_model_id" ref="company_electronic_invoicing_base.model_guia_remision"/>
+        <field name="state">code</field>
+        <field name="binding_view_types">form</field>
+        <field name="code">action = records.print_pdf()</field>
+    </record>
+    <record id="generate_pdf_electronic_guide_server_action" model="ir.actions.server">
+        <field name="name">PecanoFact: Generar PDF</field>
+        <field name="sequence">-1001</field>
+        <field name="model_id" ref="company_electronic_invoicing_base.model_guia_remision"/>
+        <field name="binding_model_id" ref="company_electronic_invoicing_base.model_guia_remision"/>
+        <field name="state">code</field>
+        <field name="binding_view_types">form</field>
+        <field name="code">
+            records.generate_pdf()
+        </field>
+    </record>
+    <!-- <record id="view_pdf_electronic_guide_server_action" model="ir.actions.server">
+        <field name="name">PecanoFact: Visualizar PDF</field>
+        <field name="sequence">-1002</field>
+        <field name="model_id" ref="company_electronic_invoicing_base.model_guia_remision"/>
+        <field name="binding_model_id" ref="company_electronic_invoicing_base.model_guia_remision"/>
+        <field name="state">code</field>
+        <field name="binding_view_types">form</field>
+        <field name="code">action = records.preview_pdf()</field>
+    </record> -->
+</odoo>

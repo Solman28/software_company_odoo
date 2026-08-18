@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="transport_type_01" model="transport.type">
+            <field name="name">Transporte Público</field>
+            <field name="code">01</field>
+        </record>
+        <record id="transport_type_02" model="transport.type">
+            <field name="name">Transporte Privado</field>
+            <field name="code">02</field>
+        </record>
+    </data>
+</odoo>

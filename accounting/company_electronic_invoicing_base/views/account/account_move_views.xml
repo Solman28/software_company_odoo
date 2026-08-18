@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_move_tipo_comprobante" model="ir.ui.view">
+        <field name="name">Tipo de comprobante</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]/h1" position="replace">
+                <h1>
+                    <field name="name" invisible="state == 'draft' and not posted_before and not quick_edit_mode" readonly="state != 'draft'"/>
+                    <span invisible="move_type != 'out_invoice' or invoice_type_code != '01' or state != 'draft'">Factura de venta- Borrador</span>
+                    <span invisible="move_type != 'out_invoice' or invoice_type_code != '03' or state != 'draft'">Boleta de venta - Borrador</span>
+                    <span invisible="move_type != 'out_refund' or invoice_type_code != '07' or state != 'draft'">Nota de crédito - Borrador</span>
+                    <span invisible="move_type != 'out_refund' or invoice_type_code != '08' or state != 'draft'">Nota de débito - Borrador</span>
+                    <span invisible="move_type != 'in_invoice' or invoice_type_code not in ['01','03'] or state != 'draft'">Factura o Boleta de proveedor - Borrador</span>
+                    <span invisible="move_type != 'in_refund' or invoice_type_code != '07' or state != 'draft'">Nota de cŕedito de proveedor - Borrador</span>
+                    <span invisible="move_type != 'out_receipt' or state != 'draft' or name != '/'">Draft Sales Receipt</span>
+                    <span invisible="move_type != 'in_receipt' or state != 'draft' or name != '/'">Draft Purchase Receipt</span>
+                </h1>
+            </xpath>
+            <!-- Nota de Crédito -->
+            <div class="oe_button_box" position="inside">
+                <button type="object" class="oe_stat_button" name="action_view_credit_notes" icon="fa-minus" invisible="credit_note_count == 0">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="credit_note_count"/>
+                        </span>
+                        <span class="o_stat_text">Notas de Crédito</span>
+                    </div>
+                </button>
+            </div>
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="reversed_entry_id" invisible="move_type not in ('entry', 'out_refund') or not reversed_entry_id"/>
+                <field name="tipo_nota_credito" invisible="move_type != 'out_refund'"/>
+                <field name="sustento_nota" invisible="move_type != 'out_refund'"/>
+            </xpath>
+            <!-- Nota de Crédito -->
+            <xpath expr="//field[@name='delivery_date']" position="after">
+                <field name="suitable_warehouse_ids" invisible="1"/>
+                <field name="sale_order_reference" invisible="1"/>
+                <field name="invoice_type_code_catalog_51"
+                    string="Tipo de operación"
+                    readonly="state != 'draft'" invisible="move_type == 'entry'"
+                    options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                <field name="warehouse_id"
+                    options="{'no_create': True, 'no_open': True}"
+                    readonly="state != 'draft' or sale_order_reference"
+                    invisible="move_type == 'entry'"/>
+            </xpath>
+            <!-- Validez de cpe  -->
+            <xpath expr="//button[@name='button_cancel']" position="before">
+                <field name="show_validate_cpe_sunat_button" invisible="1"/>
+                <button name="action_validate_cpe"
+                    string="Consulta Validez CPE SUNAT"
+                    type="object"
+                    class="oe_highlight"
+                    help="Consultar validez de comprobante en Sunat"
+                    invisible="not show_validate_cpe_sunat_button"/>
+            </xpath>
+            <xpath expr="//group[@name='sale_info_group']/field[@name='ref']" position="after">
+                <field name="suitable_journal_ids" string="Series permitidas" widget="many2many_tags" readonly="1"/>
+                <field name="partner_bank_ids" string="Nro de Cuentas de pago" widget="many2many_tags" context="{'default_partner_id': bank_partner_id, 'display_account_trust': True}" domain="[('partner_id.ref_company_ids', 'parent_of', company_id)]" readonly="state != 'draft'"/>
+            </xpath>
+            <xpath expr="//label[@for='journal_id']" position="attributes">
+                <attribute name="groups"></attribute>
+            </xpath>
+            <xpath expr="//label[@for='currency_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='journal_div']/field[@name='journal_id']" position="attributes">
+                <attribute name="groups"></attribute>
+            </xpath>
+            <xpath expr="//div[@name='journal_div']" position="attributes">
+                <attribute name="groups"></attribute>
+            </xpath>
+            <xpath expr="//header" position="after">
+                <field name="exchange_rate_warning" invisible="1"/>
+                <div name="estado_emision" class="alert alert-success" role="alert" style="margin-bottom:0px;" invisible="estado_emision != 'E'">
+                    Este documento
+                    <bold>
+                        <a class="alert-link" href="#top" role="button">HA SIDO ENVIADO</a>
+                    </bold> 
+                </div>
+                <!-- <field name="estado_emision" invisible="1"/>
+                <div class="alert alert-success" role="alert" style="margin-bottom:0px;" invisible="estado_emision != 'A'">
+                        1. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO ENVIADO </a>
+                    </bold> - Documento con estado: Aceptado por SUNAT.
+                </div>
+                <div class="alert alert-primary" role="alert" style="margin-bottom:0px;" invisible="estado_emision != 'P'">
+                        1. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO ENVIADO </a>
+                    </bold> - Documento con estado: Pendiente de envío.
+                </div>
+                <div class="alert alert-warning" role="alert" style="margin-bottom:0px;" invisible="estado_emision != 'N'">
+                        1. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO ENVIADO </a>
+                    </bold> - Documento con estado: Envío erróneo.
+                </div> -->
+                <!-- Detracciones -->
+                <div class="alert alert-info" role="alert" style="margin-bottom:0px" invisible="not is_detraction">
+                    <bold>Documento sujeto a Detracción</bold> 
+                </div>
+                <!-- Alerta tipo de cambio -->
+                <div class="alert alert-warning" role="alert" invisible="not exchange_rate_warning">
+                    El tipo de cambio no corresponde a la fecha del comprobante, se está usando el último TC disponible. Contáctese con el administrador del sistema.
+                </div>
+                <!-- Comunicacion de baja -->
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" invisible="documento_baja_state != 'A'">
+                        2. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO DADO DE BAJA </a>
+                    </bold> - Comunicación de Baja con estado
+                    <b>Baja Aceptada -
+                        <field name="documento_baja_id" readonly="1"/>
+                    </b>.
+                </div>
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" invisible="documento_baja_state != 'E'">
+                        2. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO DADO DE BAJA </a>
+                    </bold> - Comunicación de Baja con estado
+                    <b>Pendiente de anulación -
+                        <field name="documento_baja_id" readonly="1"/>
+                    </b>.
+                </div>
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" invisible="documento_baja_state != 'N'">
+                        2. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO DADO DE BAJA </a>
+                    </bold> - Comunicación de Baja con estado
+                    <b>Baja con Envío Erroneo -
+                        <field name="documento_baja_id" readonly="1"/>
+                    </b>.
+                </div>
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" invisible="documento_baja_state != 'R'">
+                        2. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO DADO DE BAJA </a>
+                    </bold> - Comunicación de Baja con estado
+                    <b>Rechazado -
+                        <field name="documento_baja_id" readonly="1"/>
+                    </b>.
+                </div>
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" invisible="documento_baja_state != 'O'">
+                        2. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO DADO DE BAJA </a>
+                    </bold> - Comunicación de Baja con estado
+                    <b>Baja Aceptada con Observaciones -
+                        <field name="documento_baja_id" readonly="1"/>
+                    </b>.
+                </div>
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" invisible="documento_baja_state != 'P'">
+                        2. Este documento
+                    <bold>
+                        <a class="alert-link" href="#outstanding" role="button">HA SIDO DADO DE BAJA </a>
+                    </bold> - Comunicación de Baja con estado
+                    <b>Baja Pendiente de envío a SUNAT -
+                        <field name="documento_baja_id" readonly="1"/>
+                    </b>.
+                </div>
+            </xpath>
+            <!--Detracciones-Retenciones-->
+            <xpath expr="//field[@name='tax_cash_basis_origin_move_id']" position="after">
+                <field name="apply_retention" string="Aplicar Retención" invisible="move_type in ('out_refund', 'in_invoice', 'in_refund', 'entry')" readonly="state != 'draft'"/>
+                <field name="retention_percentage" string="Retención(%)" invisible="not apply_retention" required="apply_retention" readonly="state != 'draft'"/>
+                <field name="retention_rate" string="Retención(%)" invisible="1"/>
+                <field name="amount_retention" string="Monto de retención" invisible="not apply_retention"/>
+                <field name="is_detraction" string=' Aplicar Detracción' invisible="move_type in ('entry', 'in_invoice')" readonly="state != 'draft'"/>
+                <field name="detraction_id" invisible="not is_detraction" readonly="1" force_save="1"/>
+                <field name="detraction_rate" string="Detracción(%)" invisible="not is_detraction"/>
+                <field name="round_amount_detraction" string="Redondear importe de detracción" readonly="state != 'draft'" invisible="not is_detraction"/>
+                <field name="amount_detraction" invisible="1"/>
+                <field name="amount_detraction_signed" string="Monto Detracción" invisible="not is_detraction or round_amount_detraction"/>
+                <field name="amount_detraction_signed_rounded" string="Monto Detracción" invisible="not is_detraction or not round_amount_detraction"/>
+                <field name="register_detraction_id" readonly="state != 'draft'" invisible="not is_detraction"/>
+            </xpath>
+            <!-- Diario - Moneda -->
+            <xpath expr="//div[@name='journal_div']/div[@name='currency_div']" position="replace">
+                <div name="currency_div" invisible="1"/>
+            </xpath>
+            <xpath expr="//div[@name='journal_div']" position="after">
+                <label for="currency_id" groups="base.group_multi_currency"/>
+                <div name="currency_block" groups="base.group_multi_currency" class="d-flex" invisible="move_type == 'entry'">
+                    <field name="currency_id" readonly="state != 'draft'" options="{'no_create': True}" context="{'search_default_active': 1, 'search_default_inactive': 1}"/>
+                    <div class="d-flex text-muted float-start" invisible="currency_id == company_currency_id">
+                        <span>1 </span>
+                        <field name="currency_id" readonly="1" options="{'no_open': True}"/>
+                        <span> = </span>
+                        <field name="exchange_rate_sunat" readonly="1" digits="[12,6]"/>
+                        <span> </span>
+                        <field name="company_currency_id" readonly="1" options="{'no_open': True}"/>
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//page[@id='aml_tab']" position="after">
+                <field name="invoice_payment_term_type" invisible="1"/>
+                <page string="Plazos de pago" invisible="invoice_payment_term_type != 'Credito'">
+                    <group>
+                        <group>
+                            <field name="paymentterm_line" always_reload="1" readonly="state != 'draft'" string="Plazos de pago">
+                                <list editable="bottom">
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="date_due" string="Fecha de vencimiento"/>
+                                    <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </list>
+                            </field>
+                        </group>
+                        <group>
+                            <field name="residual_credit_paymentterm"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='other_info']" position="after">
+                <page string="Comprobante" name="comprobante" invisible="move_type in ('in_invoice', 'in_refund', 'entry')">
+                    <group name="invoice_validity">
+                        <group name="invoice_status">
+                            <field name="estado_emision" string='Estado Emisión SUNAT' help="Estado actual de envío a SUNAT"/>
+                        </group>
+                    </group>
+                    <group string="Registros de envío a SUNAT">
+                        <group>
+                            <field name="current_log_status_id" string="Envío actual" readonly="1" force_save="1"/>
+                        </group>
+                    </group>
+                    <field name="account_log_status_ids" readonly="1">
+                        <list>
+                            <field name="name"/>
+                            <field name="account_move_id"/>
+                            <field name="status"/>
+                            <field name="create_date" string="Fecha de creación"/>
+                            <field name="is_last_log" invisible="1"/>
+                            <!-- <button name="action_set_last_log" type="object" string="Registro actual" invisible="is_last_log"/>
+                            <button name="action_set_last_log_unlink" type="object" string="Dejar" invisible="not is_last_log"/> -->
+                        </list>
+                    </field>
+                </page>
+                <page string="Validez Comprobante en SUNAT" name="validez_comprobate_sunat" invisible="not show_validate_cpe_sunat_button">
+                    <group>
+                        <group>
+                            <field name="estado_comprobante_electronico" string='Estado comprobante electrónico' readonly="True"/>
+                            <field name="estado_contribuyente_ruc" string='Estado contribuyente RUC' readonly="True"/>
+                        </group>
+                        <group>
+                            <field name="condicion_domicilio_contribuyente" string='Condición domicilio contribuyente' readonly="True"/>
+                            <field name="consulta_validez_observaciones" string='Consulta validez - Observaciones' readonly="True"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_move_retention_info" model="ir.ui.view">
+        <field name="name">view.account.move.retention.info</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <field name="apply_retention" invisible="1"/>
+                <page string="Comprobante de retención" name="voucher_retention" invisible="not apply_retention or move_type in ('out_refund', 'in_refund', 'entry')">
+                    <group>
+                        <group string="Información general">
+                            <field name="retention_receipt"/>
+                            <field name="retention_date"/>
+                        </group>
+                        <group string="Detalle de la retención">
+                            <field name="amount_retention"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_account_invoice_form_buttons">
+        <field name="name">Acciones de Comprobante electrónico</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_reverse']" position="attributes">
+                <attribute name="string">Generar nota de crédito</attribute>
+            </xpath>
+            <!-- <field name="date" position="after">
+                <field name="mostrar_button_draft" invisible="1"/>
+            </field> -->
+            <!-- <xpath expr="//button[@name='button_draft']" position="after">
+                <button name="action_validez_comprobante"
+                        string="Validez CPE Sunat"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="move_type in ['in_invoice','in_refund','entry'] or state != 'posted'"/>
+            </xpath> -->
+            <!-- <xpath expr="//button[@name='button_draft']" position="attributes">
+                <attribute name="string">Convertir a borrador</attribute>
+                <attribute name="groups">electronic_invoicing_base.group_fe_allow_convert_draft_account_move</attribute>
+                <attribute name="invisible">not mostrar_button_draft or restrict_mode_hash_table or state not in ('posted', 'cancel')</attribute>
+            </xpath> -->
+            <!-- <xpath expr="//button[@name='button_cancel']" position="attributes">
+                <attribute name="string">Cancelar</attribute>
+                <attribute name="groups">electronic_invoicing_base.group_fe_allow_cancel_account_move</attribute>
+            </xpath> -->
+            <!-- <xpath expr="//button[@name='preview_invoice']" position="attributes">
+                <attribute name="string">Pre-visualización</attribute>
+                <attribute name="groups">account.group_account_invoice</attribute>
+            </xpath> -->
+            <xpath expr="//button[@name='action_invoice_sent']" position="attributes">
+                <attribute name="string">Enviar correo</attribute>
+                <attribute name="groups">account.group_account_invoice</attribute>
+            </xpath>
+            <xpath expr="//button[@name='preview_invoice']" position="after">
+                <field name="mostrar_btn_comunicacion_baja" invisible="1"/>
+                <!--<button name="action_generate_and_signed_xml"
+                        string="Generar XML"
+                        class="oe_highlight"
+                        type="object"
+                        groups="electronic_invoicing_base.group_fe_allow_generate_send_xml"
+                        invisible="state != 'posted' or move_type not in ['out_invoice','out_refund']"/>
+                <button name="action_send_invoice" 
+                        string="Enviar XML" 
+                        class="oe_highlight" 
+                        type="object" 
+                        groups="electronic_invoicing_base.group_fe_allow_generate_send_xml"
+                        invisible="state != 'posted' or move_type not in ['out_invoice','out_refund']"/> -->
+                <button name="btn_comunicacion_baja"
+                        string="Anular Comprobante"
+                        class="oe_highlight"
+                        type="object"
+                        invisible="estado_comprobante_electronico == '2_ANULADO'
+                        or state != 'posted'
+                        or move_type in ('in_invoice', 'in_refund')
+                        or not mostrar_btn_comunicacion_baja"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="custom_view_account_invoice_filter" model="ir.ui.view">
+        <field name="name">custom.view.account.invoice.filter.name</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='myinvoices']" position="after">
+                <separator/>
+                <filter name="estado_comprobante_electronico_aceptado" string="ACEPTADO EN SUNAT" domain="[('estado_comprobante_electronico','=','1_ACEPTADO')]"/>
+                <filter name="estado_comprobante_electronico_no_existe" string="NO EXISTE EN SUNAT" domain="[('estado_comprobante_electronico','in',[False,'-','0_NO_EXISTE'])]"/>
+                <filter name="estado_comprobante_electronico_anulado" string="ANULADO EN SUNAT" domain="[('estado_comprobante_electronico','=','2_ANULADO')]"/>
+                <separator/>
+                <filter name="tipo_comprobante_factura" string="FACTURAS" domain="[('invoice_type_code','=','01')]"/>
+                <filter name="tipo_comprobante_boleta" string="BOLETAS" domain="[('invoice_type_code','=','03')]"/>
+                <filter name="tipo_comprobante_nota_credito" string="NOTA DE CRÉDITO" domain="[('invoice_type_code','=','07')]"/>
+                <filter name="tipo_comprobante_nota_debito" string="NOTA DE DÉBITO" domain="[('invoice_type_code','=','08')]"/>
+            </xpath>
+            <xpath expr="//group/filter" position="before">
+                <filter string="Estado de comprobante electrónico" name="estado_comprobante_electronico" context="{'group_by':'estado_comprobante_electronico'}"/>
+                <filter string="Emisión de comprobante" name="estado_emision" context="{'group_by':'estado_emision'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_payment_term_form" model="ir.ui.view">
+        <field name="name">view.payment.term.form.inherit</field>
+        <field name="model">account.payment.term</field>
+        <field name="inherit_id" ref="account.view_payment_term_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/field[@name='company_id']" position="before">
+                <field name="type" string="Tipo" required="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

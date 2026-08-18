@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_principal_gre" name="Guía de Remisión" parent="stock.menu_stock_root"/>
+        <menuitem id="menu_documentos_gre" name="Documentos" sequence="1"/>
+            <menuitem id="menu_guia_remitente" 
+                name="Guía de Remisión Remitente" 
+                action="action_view_guia_remision_remitente" 
+                sequence="1"/>
+            <menuitem id="menu_guia_transportista" 
+                name="Guía de Remisión Transportista" 
+                action="action_view_guia_remision_transportista" 
+                sequence="2"/>
+        </menuitem>
+    </menuitem>
+</odoo>

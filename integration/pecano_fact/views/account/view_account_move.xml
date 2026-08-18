@@ -1,0 +1,109 @@
+<odoo>
+    <record id="view_move_form_pecano" model="ir.ui.view">
+        <field name="name">view.move.form.pecano</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_cancel']" position="after">
+                <button 
+                    name="action_check_invoice" 
+                    string="Consulta Validez CPE" 
+                    type="object" 
+                    class="oe_highlight"
+                    help="Consultar validez de comprobante en Pecanofact" 
+                    invisible="state != 'posted' or move_type in ('in_invoice', 'in_refund', 'entry')"/>
+            </xpath>
+            <xpath expr="//div[@name='estado_emision']" position="after"> 
+                <field name="status_pecanofact" invisible="1"/>
+                <div class="alert alert-primary" role="alert" style="margin-bottom:0px;" invisible="status_pecanofact != '0'">
+                    Documento con estado:
+                    <bold>
+                        <a class="alert-link" href="#top" role="button">EN PROCESO</a>
+                    </bold>
+                </div>
+                <div class="alert alert-success" role="alert" style="margin-bottom:0px;" invisible="status_pecanofact != '1'">
+                    Documento con estado:
+                    <bold>
+                        <a class="alert-link" href="#top" role="button">ACEPTADO</a>
+                    </bold>
+                </div>
+                <div class="alert alert-warning" role="alert" style="margin-bottom:0px;" invisible="status_pecanofact != '2'">
+                    Documento con estado:
+                    <bold>
+                        <a class="alert-link" href="#top" role="button">ANULADO</a>
+                    </bold>
+                </div>
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" invisible="status_pecanofact != '3'">
+                    Documento con estado:
+                    <bold>
+                        <a class="alert-link" href="#top" role="button">RECHAZADO</a>
+                    </bold>
+                </div>
+            </xpath>
+            <xpath expr="//group[@name='sale_info_group']/field[@name='ref']" position="after">
+                <field name="sunat_observacion_venta" string="Observación" readonly="state != 'draft'"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_move_form_attachment_cpe" model="ir.ui.view">
+        <field name="name">view.move.form.attachment.cpe</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="company_electronic_invoicing_base.view_account_move_tipo_comprobante"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='estado_emision']" position="after">
+                <field name="status_pecanofact" string="Estado en PecanoFact" help="Estado del comprobante en pecanofact"/>
+            </xpath>
+            <xpath expr="//group[@name='invoice_status']" position="after">
+                <group>
+                    <field name="consulta_validez_observaciones_pecano" string='Consulta validez - Observaciones(PECANO)'/>
+                </group>
+            </xpath>
+            <xpath expr="//group[@name='invoice_validity']" position="after">
+               <group string="Archivos adjuntos">
+                    <field name="invoice_pdf_file_name" invisible="1"/>
+                    <field name="invoice_xml_file_name" invisible="1"/>
+                    <field name="invoice_cdr_file_name" invisible="1"/>
+                    <field name="invoice_pdf_file" string='PDF' filename="invoice_pdf_file_name" widget="binary" readonly="1"/>
+                    <field name="invoice_xml_file" string="XML" filename="invoice_xml_file_name" widget="binary" readonly="1"/>
+                    <field name="invoice_cdr_file" string="CDR" filename="invoice_cdr_file_name" widget="binary" readonly="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="account_factura_tree_1_pecanofact" model="ir.ui.view">
+        <field name="name">account.factura.tree.1.pecanofact</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="company_electronic_invoicing_base.account_factura_tree_1"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='estado_emision']" position="after">
+                <field name="status_pecanofact" string="Estado en PecanoFact" widget="badge"
+                    decoration-info="status_pecanofact == '0'"
+                    decoration-success="status_pecanofact == '1'"
+                    decoration-warning="status_pecanofact == '2'"
+                    decoration-danger="status_pecanofact == '3'"/>
+            </xpath>
+            <xpath expr="//list" position="attributes">
+                <attribute name="decoration-danger">status_pecanofact == '3'</attribute>
+                <attribute name="decoration-success">status_pecanofact == '1'</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_invoice_tree_inherit_fe_pecanofact" model="ir.ui.view">
+        <field name="name">view.invoice.tree.inherit.fe.pecanofact</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="company_electronic_invoicing_base.view_invoice_tree_inherit_fe"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='estado_emision']" position="after">
+                <field name="status_pecanofact" string="Estado en PecanoFact" widget="badge"
+                    decoration-info="status_pecanofact == '0'"
+                    decoration-success="status_pecanofact == '1'"
+                    decoration-warning="status_pecanofact == '2'"
+                    decoration-danger="status_pecanofact == '3'"/>
+            </xpath>
+            <xpath expr="//list" position="attributes">
+                <attribute name="decoration-danger">status_pecanofact == '3'</attribute>
+                <attribute name="decoration-success">status_pecanofact == '1'</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

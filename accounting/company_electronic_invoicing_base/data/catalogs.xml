@@ -1,0 +1,84 @@
+<odoo noupdate="1">
+    <record id="catalog_53_00" model="sunat.catalog.53"><field name="code">00</field><field name="name">Descuentos que afectan la base imponible del IGV/IVAP</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_01" model="sunat.catalog.53"><field name="code">01</field><field name="name">Descuentos que no afectan la base imponible del IGV/IVAP</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_02" model="sunat.catalog.53"><field name="code">02</field><field name="name">Descuentos globales que afectan la base imponible del IGV/IVAP</field><field name="active" eval="True"></field></record>
+    <record id="catalog_53_03" model="sunat.catalog.53"><field name="code">03</field><field name="name">Descuentos globales que no afectan la base imponible del IGV/IVAP</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_04" model="sunat.catalog.53"><field name="code">04</field><field name="name">Descuentos globales por anticipos gravados que afectan la base imponible del IGV/IVAP </field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_05" model="sunat.catalog.53"><field name="code">05</field><field name="name">Descuentos globales por anticipos exonerados</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_06" model="sunat.catalog.53"><field name="code">06</field><field name="name">Descuentos globales por anticipos inafectos</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_07" model="sunat.catalog.53"><field name="code">07</field><field name="name">Factor de compensación - Decreto de urgencia N. 010-2004</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_20" model="sunat.catalog.53"><field name="code">20</field><field name="name">Anticipo de ISC</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_45" model="sunat.catalog.53"><field name="code">45</field><field name="name">FISE</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_46" model="sunat.catalog.53"><field name="code">46</field><field name="name">Recargo al consumo y/o propinas</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_47" model="sunat.catalog.53"><field name="code">47</field><field name="name">Cargos que afectan la base imponible del IGV/IVAP</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_48" model="sunat.catalog.53"><field name="code">48</field><field name="name">Cargos que no afectan la base imponible del IGV/IVAP</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_49" model="sunat.catalog.53"><field name="code">49</field><field name="name">Cargos globales que afectan la base imponible del IGV/IVAP</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_50" model="sunat.catalog.53"><field name="code">50</field><field name="name">Cargos globales que no afectan la base imponible del IGV/IVAP</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_51" model="sunat.catalog.53"><field name="code">51</field><field name="name">Percepción venta interna</field><field name="active" eval="True"></field></record>
+    <record id="catalog_53_52" model="sunat.catalog.53"><field name="code">52</field><field name="name">Percepción a la adquisición de combustible</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_53" model="sunat.catalog.53"><field name="code">53</field><field name="name">Percepción realizada al agente de percepción con tasa especial</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_54" model="sunat.catalog.53"><field name="code">54</field><field name="name">Factor de aportación - Decreto de urgencia N. 010-2004</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_61" model="sunat.catalog.53"><field name="code">61</field><field name="name">Retención de renta por anticipos</field><field name="active" eval="False"></field></record>
+    <record id="catalog_53_62" model="sunat.catalog.53"><field name="code">62</field><field name="name">Retención del IGV</field><field name="active" eval="True"></field></record>
+    <record id="catalog_53_63" model="sunat.catalog.53"><field name="code">63</field><field name="name">Rentención de renta de segunda categoría</field><field name="active" eval="False"></field></record>
+
+    <record id="catalog_51_0101" model="sunat.catalog.51"><field name="code">0101</field><field name="name">Venta interna</field><field name="active" eval="True"></field></record>
+    <record id="catalog_51_0112" model="sunat.catalog.51"><field name="code">0112</field><field name="name">Venta Interna - Sustenta Gastos Deducibles Persona Natural</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0113" model="sunat.catalog.51"><field name="code">0113</field><field name="name">Venta Interna-NRUS</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0200" model="sunat.catalog.51"><field name="code">0200</field><field name="name">Exportación de Bienes</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0201" model="sunat.catalog.51"><field name="code">0201</field><field name="name">Exportación de Servicios – Prestación servicios realizados íntegramente en el país</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0202" model="sunat.catalog.51"><field name="code">0202</field><field name="name">Exportación de Servicios – Prestación de servicios de hospedaje No Domiciliado</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0203" model="sunat.catalog.51"><field name="code">0203</field><field name="name">Exportación de Servicios – Transporte de navieras</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0204" model="sunat.catalog.51"><field name="code">0204</field><field name="name">Exportación de Servicios – Servicios  a naves y aeronaves de bandera extranjera</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0205" model="sunat.catalog.51"><field name="code">0205</field><field name="name">Exportación de Servicios  - Servicios que conformen un Paquete Turístico</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0206" model="sunat.catalog.51"><field name="code">0206</field><field name="name">Exportación de Servicios – Servicios complementarios al transporte de carga</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0207" model="sunat.catalog.51"><field name="code">0207</field><field name="name">Exportación de Servicios – Suministro de energía eléctrica a favor de sujetos domiciliados en ZED</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0208" model="sunat.catalog.51"><field name="code">0208</field><field name="name">Exportación de Servicios – Prestación servicios realizados parcialmente en el extranjero</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0301" model="sunat.catalog.51"><field name="code">0301</field><field name="name">Operaciones con Carta de porte aéreo (emitidas en el ámbito nacional)</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0302" model="sunat.catalog.51"><field name="code">0302</field><field name="name">Operaciones de Transporte ferroviario de pasajeros</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0401" model="sunat.catalog.51"><field name="code">0401</field><field name="name">Ventas no domiciliados que no califican como exportación</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0501" model="sunat.catalog.51"><field name="code">0501</field><field name="name">Compra interna</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0502" model="sunat.catalog.51"><field name="code">0502</field><field name="name">Anticipos</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_0503" model="sunat.catalog.51"><field name="code">0503</field><field name="name">Compra de oro</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_1001" model="sunat.catalog.51"><field name="code">1001</field><field name="name">Operación Sujeta a Detracción</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_1002" model="sunat.catalog.51"><field name="code">1002</field><field name="name">Operación Sujeta a Detracción- Recursos Hidrobiológicos</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_1003" model="sunat.catalog.51"><field name="code">1003</field><field name="name">Operación Sujeta a Detracción- Servicios de Transporte Pasajeros</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_1004" model="sunat.catalog.51"><field name="code">1004</field><field name="name">Operación Sujeta a Detracción- Servicios de Transporte Carga</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_2001" model="sunat.catalog.51"><field name="code">2001</field><field name="name">Operación Sujeta a Percepción</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_2002" model="sunat.catalog.51"><field name="code">2002</field><field name="name">Operación sujeta a Retención de Renta de segunda categoría</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_2100" model="sunat.catalog.51"><field name="code">2100</field><field name="name">Créditos a empresas</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_2101" model="sunat.catalog.51"><field name="code">2101</field><field name="name">Créditos de consumo revolvente</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_2102" model="sunat.catalog.51"><field name="code">2102</field><field name="name">Créditos de consumo no revolvente </field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_2103" model="sunat.catalog.51"><field name="code">2103</field><field name="name">Otras operaciones no gravadas - Empresas del sistema financiero y cooperativas de ahorro y crédito no autorizadas a captar recursos del público</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_2104" model="sunat.catalog.51"><field name="code">2104</field><field name="name">Otras operaciones no  gravadas - Empresas del sistema de seguros</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_2105" model="sunat.catalog.51"><field name="code">2105</field><field name="name">Comprobante emitido por AFP</field><field name="active" eval="False"></field></record>
+    <record id="catalog_51_2106" model="sunat.catalog.51"><field name="code">2106</field><field name="name">Venta Nacional a Turistas - Tax Free</field><field name="active" eval="False"></field></record>
+
+
+
+    <record id="catalog_59_001" model="sunat.catalog.59"><field name="code">001</field><field name="name">Depósito en cuenta</field><field name="active" eval="True"></field></record>
+    <record id="catalog_59_002" model="sunat.catalog.59"><field name="code">002</field><field name="name">Giro</field><field name="active" eval="True"></field></record>
+    <record id="catalog_59_003" model="sunat.catalog.59"><field name="code">003</field><field name="name">Transferencia de fondos</field><field name="active" eval="True"></field></record>
+    <record id="catalog_59_004" model="sunat.catalog.59"><field name="code">004</field><field name="name">Orden de pago</field><field name="active" eval="True"></field></record>
+    <record id="catalog_59_005" model="sunat.catalog.59"><field name="code">005</field><field name="name">Tarjeta de débito</field><field name="active" eval="True"></field></record>
+    <record id="catalog_59_006" model="sunat.catalog.59"><field name="code">006</field><field name="name">Tarjeta de crédito emitida en el país por una empresa del sistema financiero </field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_007" model="sunat.catalog.59"><field name="code">007</field><field name="name">Cheques con la cláusula de "NO NEGOCIABLE", "INTRANSFERIBLES", "NO A LA ORDEN" u otra equivalente, a que se refiere el inciso g) del artículo 5° de la ley</field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_008" model="sunat.catalog.59"><field name="code">008</field><field name="name">Efectivo, por operaciones en las que no existe obligación de utilizar medio de pago</field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_009" model="sunat.catalog.59"><field name="code">009</field><field name="name">Efectivo, en los demás casos</field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_010" model="sunat.catalog.59"><field name="code">010</field><field name="name">Medios de pago usados en comercio exterior </field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_011" model="sunat.catalog.59"><field name="code">011</field><field name="name">Documentos emitidos por las EDPYMES y las cooperativas de ahorro y crédito no autorizadas a captar depósitos del público</field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_012" model="sunat.catalog.59"><field name="code">012</field><field name="name">Tarjeta de crédito emitida en el país o en el exterior por una empresa no perteneciente al sistema financiero, cuyo objeto principal sea la emisión y administración de tarjetas de crédito</field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_013" model="sunat.catalog.59"><field name="code">013</field><field name="name">Tarjetas de crédito emitidas en el exterior por empresas bancarias o financieras no domiciliadas</field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_101" model="sunat.catalog.59"><field name="code">101</field><field name="name">Transferencias – Comercio exterior</field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_102" model="sunat.catalog.59"><field name="code">102</field><field name="name">Cheques bancarios - Comercio exterior</field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_103" model="sunat.catalog.59"><field name="code">103</field><field name="name">Orden de pago simple - Comercio exterior</field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_104" model="sunat.catalog.59"><field name="code">104</field><field name="name">Orden de pago documentario - Comercio exterior</field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_105" model="sunat.catalog.59"><field name="code">105</field><field name="name">Remesa simple - Comercio exterior</field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_106" model="sunat.catalog.59"><field name="code">106</field><field name="name">Remesa documentaria - Comercio exterior</field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_107" model="sunat.catalog.59"><field name="code">107</field><field name="name">Carta de crédito simple - Comercio exterior</field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_108" model="sunat.catalog.59"><field name="code">108</field><field name="name">Carta de crédito documentario - Comercio exterior</field><field name="active" eval="False"></field></record>
+    <record id="catalog_59_999" model="sunat.catalog.59"><field name="code">999</field><field name="name">Otros medios de pago</field><field name="active" eval="True"></field></record>
+
+    <!--NUEVO REGISTRO -->
+    <record model='l10n_latam.identification.type' id='it_various_others'><field name='name'>Varios - Ventas menores a S/.700.00 y otros</field><field name='country_id' ref='base.pe'/><field name='l10n_pe_vat_code'>-</field><field name='sequence'>150</field></record>
+</odoo>

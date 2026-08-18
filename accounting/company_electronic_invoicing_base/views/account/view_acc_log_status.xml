@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_tree_account_log_status" model="ir.ui.view">
+            <field name="name">view.tree.account.log.status</field>
+            <field name="model">account.log.status</field>
+            <field name="priority" eval="1" />
+            <field name="arch" type="xml">
+                <list create="0">
+                    <field name="name"/>
+                    <field name="date_issue"/>
+                    <field name="create_date" invisible="1"/>
+                    <field name="status"/>
+                    <field name="account_move_id"/> 
+                    <field name="is_last_log"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_form_account_log_status" model="ir.ui.view">
+            <field name="name">view.form.account.log.status</field>
+            <field name="model">account.log.status</field>
+            <field name="priority" eval="1" />
+            <field name="arch" type="xml">
+                <form create="0">
+                    <!-- <header>
+                        <button type="object" name="action_request_status_ticket_summary" 
+                                string="Consultar estado de ticket de resumen"  attrs="{'invisible':[('account_summary_id','=',False)]}"
+                                class="oe_highlight"/>
+
+                        <button type="object" name="action_request_status_ticket_voided" 
+                                string="Consultar estado de ticket de anulación"  attrs="{'invisible':[('account_voided_id','=',False)]}"
+                                class="oe_highlight"/>
+                                
+                        <button type="object" name="action_request_status_invoice" 
+                                string="Consultar comprobante"  attrs="{'invisible':[('account_move_id','=',False)]}"
+                                class="oe_highlight"/>
+                    </header> -->
+                    <sheet>
+                        <h1>
+                            <!-- <field name="account_summary_id" attrs="{'invisible':[('account_summary_id','=',False)]}" options="{'no_open':True}"/>
+                            <field name="account_voided_id" attrs="{'invisible':[('account_voided_id','=',False)]}" options="{'no_open':True}"/> -->
+                            <field name="account_move_id"  invisible="not account_move_id" options="{'no_open':True}"/>
+                            <field name="guia_remision_id" invisible="not guia_remision_id" options="{'no_open':True}"/>
+                        </h1>
+                        <group>
+                            <group string='Comprobante electrónico'>
+                                <field name="name"/>
+                                <field name="digest_value" string='DigestValue'/>
+                                <field name="company_id" options="{'no_open':True}" string='Compañía'/>
+                            </group>
+                            <group name="sunat" string='SUNAT'>
+                                <field name="status" string='Estado envío SUNAT'/>
+                                <field name="date_issue" string='Fecha emisión SUNAT'/>
+                                <field name="date_request" string='Fecha envío SUNAT'/>
+                                <!-- <field name="summary_description_response" attrs="{'invisible':[('account_summary_id','=',False)]}"/>
+                                <field name="summary_ticket" attrs="{'invisible':[('account_summary_id','=',False)]}"/>
+                                <field name="voided_ticket" attrs="{'invisible':[('account_voided_id','=',False)]}"/> -->
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Comprobante XML Firmado">
+                                <group>
+                                    <field name="request_json" string='Contenido comprobante (JSON)'/>
+                                    <field name="signed_xml_data" widget="ace"/>
+                                    <!-- <field name="signed_xml_with_creds" widget="ace" string='XML credenciales'/> -->
+                                </group>
+                            </page>
+                            <page string="Respuesta de SUNAT">
+                                <group>
+                                    <field name="response_json" string='Respuesta API' groups="base.group_no_one"/>
+                                    <!-- <field name="summary_submission_response_xml" widget="ace" attrs="{'invisible':[('account_summary_id','=',False)]}"/>
+                                    <field name="voided_submission_response_xml" widget="ace" attrs="{'invisible':[('account_voided_id','=',False)]}"/> -->
+                                    <field name="response_xml_without_format" widget="ace" string='Respuesta SUNAT - CDR'/>
+                                    <field name="response_content_xml" widget="ace" string='Respuesta SUNAT - Formateado'/>
+                                </group>
+                            </page>
+                            <page string="Observaciones de SUNAT">
+                                <group>
+                                    <field name="sunat_observaciones" widget="ace"/>
+                                </group>
+                            </page>
+                            <page string="Lista de errores" groups="base.group_no_one">
+                                <group>
+                                    <field name="log_observation_ids" string="Observaciones" readonly="1">
+                                        <list>
+                                            <field name="code" string="Código"/>
+                                            <field name="description" string="Descripción"/>
+                                        </list>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+
+        <!-- <record id="action_view_facturacion_log_status" model="ir.actions.act_window">
+            <field name="name">Comprobantes Log status</field>
+            <field name="res_model">account.log.status</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+
+        <record id="action_view_form_acc_log_status_view" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="action_view_facturacion_log_status" />
+            <field name="view_id" ref="view_form_account_log_status" />
+            <field name="view_mode">form</field>
+            <field name="sequence">2</field>
+        </record>
+
+        <record id="action_view__tree_acc_log_status_view" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="action_view_facturacion_log_status" />
+            <field name="view_id" ref="view_tree_account_log_status" />
+            <field name="view_mode">list</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="submenu_facturacion_log_status" model="ir.ui.menu">
+            <field name="name">Fact. Log</field>
+            <field name="action" ref="action_view_facturacion_log_status" />
+            <field name="parent_id" ref="account.account_management_menu" />
+        </record> -->
+
+    </data>
+</odoo>

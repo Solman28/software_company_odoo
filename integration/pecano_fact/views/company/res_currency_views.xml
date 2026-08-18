@@ -1,0 +1,12 @@
+<odoo>
+    <record id="view_currency_form_inherit" model="ir.ui.view">
+        <field name="name">Configuracion Pecano Fact</field>
+        <field name="model">res.currency</field>
+        <field name="inherit_id" ref="base.view_currency_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='symbol']" position="after">
+                <field name="jnq_code_pecanofact"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

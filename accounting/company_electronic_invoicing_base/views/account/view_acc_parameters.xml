@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_account_parameters_tree" model="ir.ui.view">
+        <field name="name">view_account_parameters_tree</field>
+        <field name="model">account.parameters</field>
+        <field name="arch" type="xml">
+            <list editable="bottom" sample="1">
+                <field name="name" required="1"/>
+                <field name="code" required="1"/>
+                <field name="duration" />
+                <field name="measure_time" />
+                <field name="company_id" groups="base.group_multi_company" string='Compañía'/>
+            </list>
+        </field>
+    </record>
+    
+    <record id="action_account_parameters" model="ir.actions.act_window">
+        <field name="name">Parámetros de facturación</field>
+        <field name="res_model">account.parameters</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Crear un nuevo parámetro de facturación para realizar los cálculos o validaciones
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_acc_parameters" name="Parámetros" parent="account.account_invoicing_menu" sequence="7" action="action_account_parameters"/>
+</odoo>

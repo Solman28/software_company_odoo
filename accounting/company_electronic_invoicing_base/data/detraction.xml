@@ -1,0 +1,275 @@
+<odoo>
+    <record id="catalog_54_001" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo I</field> -->
+        <field name="code">001</field>
+        <field name="name">Azúcar y melaza de caña</field>
+        <field name="rate" eval="10"/>
+        <field name="description">Detracción de Azúcar y melaza de caña</field>
+    </record>
+    <record id="catalog_54_002" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo I</field> -->
+        <field name="code">002</field>
+        <field name="name">Arroz</field>
+        <field name="rate" eval="4"/>
+        <field name="description">Detracción de Arroz</field>
+    </record>
+    <record id="catalog_54_003" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo I</field> -->
+        <field name="code">003</field>
+        <field name="name">Alcohol etílico</field>
+        <field name="rate" eval="4"/>
+        <field name="description">Detracción de Alcohol etílico</field>
+    </record>
+    <record id="catalog_54_004" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">004</field>
+        <field name="name">Recursos hidrobiológicos</field>
+        <field name="rate" eval="4"/>
+        <field name="description">Detracción de Recursos hidrobiológicos</field>
+    </record>
+    <record id="catalog_54_005" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">005</field>
+        <field name="name">Maíz amarillo duro</field>
+        <field name="rate" eval="4"/>
+        <field name="description">Detracción de Maíz amarillo duro</field>
+    </record>
+    <record id="catalog_54_007" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">007</field>
+        <field name="name">Caña de azúcar</field>
+        <field name="rate" eval="10"/>
+        <field name="description">Detracción de Caña de azúcar</field>
+    </record>
+    <record id="catalog_54_008" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">008</field>
+        <field name="name">Madera</field>
+        <field name="rate" eval="4"/>
+        <field name="description">Detracción de Madera</field>
+    </record>
+    <record id="catalog_54_009" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">009</field>
+        <field name="name">Arena y piedra.</field>
+        <field name="rate" eval="10"/>
+        <field name="description">Detracción de Arena y piedra</field>
+    </record>
+    <record id="catalog_54_010" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">010</field>
+        <field name="name">Residuos, subproductos, desechos, recortes y desperdicios</field>
+        <field name="rate" eval="15"/>
+        <field name="description">Detracción de Residuos, subproductos, desechos, recortes y desperdicios</field>
+    </record>
+    <record id="catalog_54_011" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">011</field>
+        <field name="name">Bienes gravados con el IGV, o renuncia a la exoneración</field>
+        <field name="rate" eval="10"/>
+        <field name="description">Detracción de Bienes gravados con el IGV, o renuncia a la exoneración</field>
+    </record>
+    <record id="catalog_54_012" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo III</field> -->
+        <field name="code">012</field>
+        <field name="name">Intermediación laboral y tercerización</field>
+        <field name="rate" eval="12"/>
+        <field name="description">Detracción de Intermediación laboral y tercerización</field>
+    </record>
+    <record id="catalog_54_013" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo I</field> -->
+        <field name="code">013</field>
+        <field name="name">Animales vivos</field>
+        <field name="rate" eval="0"/>
+        <field name="description">Detracción de Animales vivos</field>
+    </record>
+    <record id="catalog_54_014" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">014</field>
+        <field name="name">Carnes y despojos comestibles</field>
+        <field name="rate" eval="4"/>
+        <field name="description">Detracción de Carnes y despojos comestibles</field>
+    </record>
+    <record id="catalog_54_015" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo I</field> -->
+        <field name="code">015</field>
+        <field name="name">Abonos, cueros y pieles de origen animal</field>
+        <field name="rate" eval="0"/>
+        <field name="description">Detracción de Abonos, cueros y pieles de origen animal</field>
+    </record>
+    <record id="catalog_54_016" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">016</field>
+        <field name="name">Aceite de pescado</field>
+        <field name="rate" eval="10"/>
+        <field name="description">Detracción de Aceite de pescado</field>
+    </record>
+    <record id="catalog_54_017" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">017</field>
+        <field name="name">Harina, polvo y “pellets” de pescado, crustáceos, moluscos y demás invertebrados acuáticos</field>
+        <field name="rate" eval="4"/>
+        <field name="description">Detracción de Harina, polvo y “pellets” de pescado, crustáceos, moluscos y demás invertebrados acuáticos</field>
+    </record>
+    <record id="catalog_54_019" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo III</field> -->
+        <field name="code">019</field>
+        <field name="name">Arrendamiento de bienes muebles</field>
+        <field name="rate" eval="10"/>
+        <field name="description">Detracción de Arrendamiento de bienes muebles</field>
+    </record>
+    <record id="catalog_54_020" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo III</field> -->
+        <field name="code">020</field>
+        <field name="name">Mantenimiento y reparación de bienes muebles</field>
+        <field name="rate" eval="12"/>
+        <field name="description">Detracción de Mantenimiento y reparación de bienes muebles</field>
+    </record>
+    <record id="catalog_54_021" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo III</field> -->
+        <field name="code">021</field>
+        <field name="name">Movimiento de carga</field>
+        <field name="rate" eval="10"/>
+        <field name="description">Detracción de Movimiento de carga</field>
+    </record>
+    <record id="catalog_54_022" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo III</field> -->
+        <field name="code">022</field>
+        <field name="name">Otros servicios empresariales</field>
+        <field name="rate" eval="12"/>
+        <field name="description">Detracción de Otros servicios empresariales</field>
+    </record>
+    <record id="catalog_54_023" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">023</field>
+        <field name="name">Leche</field>
+        <field name="rate" eval="4"/>
+        <field name="description">Detracción de Leche</field>
+    </record>
+    <record id="catalog_54_024" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo III</field> -->
+        <field name="code">024</field>
+        <field name="name">Comisión mercantil</field>
+        <field name="rate" eval="10"/>
+        <field name="description">Detracción de Comisión mercantil</field>
+    </record>
+    <record id="catalog_54_025" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo III</field> -->
+        <field name="code">025</field>
+        <field name="name">Fabricación de bienes por encargo</field>
+        <field name="rate" eval="10"/>
+        <field name="description">Detracción de Fabricación de bienes por encargo</field>
+    </record>
+    <record id="catalog_54_026" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo III</field> -->
+        <field name="code">026</field>
+        <field name="name">Servicio de transporte de personas</field>
+        <field name="rate" eval="10"/>
+        <field name="description">Detracción de Servicio de transporte de personas</field>
+    </record>
+    <record id="catalog_54_027" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo III</field> -->
+        <field name="code">027</field>
+        <field name="name">Servicio de transporte de carga</field>
+        <field name="rate" eval="4"/>
+        <field name="description">Detracción de Servicio de transporte de carga</field>
+    </record>
+    <record id="catalog_54_028" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo III</field> -->
+        <field name="code">028</field>
+        <field name="name">Transporte de pasajeros</field>
+        <field name="rate" eval="0"/>
+        <field name="description">Detracción de Transporte de pasajeros</field>
+    </record>
+    <record id="catalog_54_030" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo III</field> -->
+        <field name="code">030</field>
+        <field name="name">Contratos de construcción</field>
+        <field name="rate" eval="4"/>
+        <field name="description">Detracción de Contratos de construcción</field>
+    </record>
+    <record id="catalog_54_031" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">031</field>
+        <field name="name">Oro gravado con el IGV</field
+        ><field name="rate" eval="10"/>
+        <field name="description">Detracción de Oro gravado con el IGV</field>
+    </record>
+    <record id="catalog_54_032" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">032</field>
+        <field name="name">Paprika y otros frutos de los generos capsicum o pimienta</field
+        ><field name="rate" eval="10"/>
+        <field name="description">Detracción de Paprika y otros frutos de los generos capsicum o pimienta</field>
+    </record>
+    <record id="catalog_54_034" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">034</field>
+        <field name="name">Minerales metálicos no auríferos</field>
+        <field name="rate" eval="10"/>
+        <field name="description">Detracción de Minerales metálicos no auríferos</field>
+    </record>
+    <record id="catalog_54_035" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">035</field>
+        <field name="name">Bienes exonerados del IGV</field>
+        <field name="rate" eval="2"/>
+        <field name="description">Detracción de Bienes exonerados del IGV</field>
+    </record>
+    <record id="catalog_54_036" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">036</field>
+        <field name="name">Oro y demás minerales metálicos exonerados del IGV</field>
+        <field name="rate" eval="2"/>
+        <field name="description">Detracción de Oro y demás minerales metálicos exonerados del IGV</field>
+    </record>
+    <record id="catalog_54_037" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo III</field> -->
+        <field name="code">037</field>
+        <field name="name">Demás servicios gravados con el IGV</field>
+        <field name="rate" eval="12"/>
+        <field name="description">Detracción de Demás servicios gravados con el IGV</field>
+    </record>
+    <record id="catalog_54_039" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">039</field>
+        <field name="name">Minerales no metálicos</field>
+        <field name="rate" eval="10"/>
+        <field name="description">Detracción de Minerales no metálicos</field>
+    </record>
+    <record id="catalog_54_040" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo III</field> -->
+        <field name="code">040</field>
+        <field name="name">Bien inmueble gravado con IGV</field>
+        <field name="rate" eval="4"/>
+        <field name="description">Detracción de Bien inmueble gravado con IGV</field>
+    </record>
+    <record id="catalog_54_041" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo II</field> -->
+        <field name="code">041</field>
+        <field name="name">Plomo</field>
+        <field name="rate" eval="15"/>
+        <field name="description">Detracción de Plomo</field>
+    </record>
+    <record id="catalog_54_044" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo IV</field> -->
+        <field name="code">044</field>
+        <field name="name">Servicio de beneficio de minerales metálicos gravado con el IGV</field>
+        <field name="rate" eval="0"/>
+        <field name="description">Detracción de Servicio de beneficio de minerales metálicos gravado con el IGV</field>
+    </record>
+    <record id="catalog_54_045" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo I</field> -->
+        <field name="code">045</field>
+        <field name="name">Minerales de oro y sus concentrados gravados con el IGV</field>
+        <field name="rate" eval="1.5"/>
+        <field name="description">Detracción de Minerales de oro y sus concentrados gravados con el IGV</field>
+    </record>
+    <record id="catalog_54_099" model="sunat.catalog.54">
+        <!-- <field name="anexo">Anexo I</field> -->
+        <field name="code">099</field>
+        <field name="name">Ley 30737</field>
+        <field name="rate" eval="8"/>
+        <field name="description">Detracción de Ley 30737</field>
+    </record>
+</odoo>

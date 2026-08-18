@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="account_comunicacion_baja_tree" model="ir.ui.view">
+        <field name="name">Comunicación de baja - Tree</field>
+        <field name="model">account.comunicacion_baja</field>
+        <field name="arch" type="xml">
+            <list create="0" delete="0">
+                <field name="identificador_anulacion" string="Identificador de Anulación"/>
+                <field name="date_invoice" string="F.Emisión de comprobante"/>
+                <field name="invoice_ids" widget="many2many_tags" string="Comprobantes"/>
+                <field name="user_id" string="Responsable"/>
+                <field name="state" string="Estado de Comunicación de Baja"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_comunicacion_baja_form_simple" model="ir.ui.view">
+        <field name="name">Comunicación de baja - Simple</field>
+        <field name="model">account.comunicacion_baja</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group string='Comprobante electrónico'>
+                        <field name='invoice_id' string='Comprobante' invisible="1" readonly="1" force_save="1" options="{'no_create':True,'no_open':True}"/>
+                        <field name="invoice_ids" widget="many2many_tags" string="Comprobantes relacionados" options="{'no_create':True,'no_open':True}"/>
+                    </group>
+                    <group string='Información sobre la anulación'>
+                        <field name='motivo' string='Motivo de baja' placeholder='Escriba aquí el motivo de la anulación del comprobante electrónico'/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="post" type="object" string="Anular" class="oe_highlight" groups="account.group_account_invoice"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_comunicacion_baja_form" model="ir.ui.view">
+        <field name="name">Comunicación de baja - Completo</field>
+        <field name="model">account.comunicacion_baja</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="post" string="Anular" type="object" class="oe_highlight" invisible="state in ['A','E','O','R']"/>
+                    <!-- <button name="action_generate_and_signed_xml" type="object" string="Generar XML" class="oe_highlight" invisible="state in ['A','E','O','R']"
+                    groups="electronic_invoicing_base.group_fe_allow_generate_send_xml"/>
+                    <button name="action_send_voided" type="object" string="Enviar XML" class="oe_highlight" groups="electronic_invoicing_base.group_fe_allow_generate_send_xml" invisible="state in ['A','E','O','R']"/>
+                    <button name="action_request_status_ticket" type="object" string="Consulta de estado de anulación" class="oe_highlight"/> -->
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="identificador_anulacion" invisible="not identificador_anulacion" readonly="1" force_save="1"/>
+                    </h1>
+                    <group>
+                        <group string='Comprobante electrónico'>
+                            <field name="invoice_type_code_id" readonly="0" force_save="1" string='Tipo'/>
+                            <field name="invoice_ids" widget="many2many_tags" 
+                                    string="Comprobante"
+                                    invisible="1"
+                                    domain="[('invoice_date','=',date_invoice),('move_type','=','out_invoice'),('state','=','posted'),('invoice_type_code','=',invoice_type_code_id)]" 
+                                    options="{'no_create':True,'no_open': True,'no_create_edit':True}"/>
+                            <field name="company_id" readonly="1" force_save="1" options="{'no_open':True}"/>
+                        </group>
+                        <group string='Información sobre la anulación'>
+                            <field name="date_invoice" readonly="0" force_save="1"/>
+                            <field name="voided_date" readonly="0" force_save="1"/>
+                            <field name="voided_ticket" invisible="not voided_ticket" readonly="voided_ticket"/>
+                            <field name="motivo" placeholder="Motivo de baja"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Registro de envíos a SUNAT" groups="base.group_no_one">
+                            <group>
+                                <field name="current_log_status_id" readonly="1" force_save="1" string='Registro de envío actual'/>
+                            </group>
+                            <field name="account_log_status_ids" mode="list" readonly="state != 'draft'">
+                                <list decoration-bf="is_last_log == True" decoration-muted="is_last_log == False">
+                                    <field name="name"/>
+                                    <field name="status" string='Estado envío SUNAT'/>
+                                    <field name="voided_ticket"/>
+                                    <field name="create_date" string="Fecha de creación"/>
+                                    <field name="is_last_log" invisible="1"/>
+                                    <button name="action_set_last_log" type="object" string="Registro actual" invisible="is_last_log"/>
+                                    <button name="action_set_last_log_unlink" type="object" string="Dejar" invisible="not is_last_log"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_comunicacion_baja" model="ir.actions.act_window">
+        <field name="name">COMUNICACIÓN DE BAJA</field>
+        <field name="res_model">account.comunicacion_baja</field>
+        <field name="view_id" ref="account_comunicacion_baja_tree"/>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_operations" name="Operaciones" sequence="10" parent="account.menu_finance_receivables">
+        <menuitem name="Comunicación de Baja" id="menu_comunicacion_baja" action="action_comunicacion_baja"/>
+    </menuitem>
+</odoo>

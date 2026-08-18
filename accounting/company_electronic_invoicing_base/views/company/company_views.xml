@@ -1,0 +1,29 @@
+<odoo>
+    <record id="view_company_fe_api_credentials" model="ir.ui.view">
+        <field name="name">Credenciales API FE</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="fe_api_credentials" string="Credenciales API FE">
+                    <group>
+                        <field name="electronic_invoicing_type_environment" string="Tipo de envío" required="1"/>
+                        <field name="sunat_provider" string="Proveedor"/>
+                    </group>
+                </page>
+                <page name="validate_cpe" string="Validez CPE Sunat">
+                    <group>
+                        <field name="sunat_client_id" string="Client ID"/>
+                        <field name="sunat_client_secret" string="Client Secret" password="True"/>
+                        <field name="validate_cpe_token_url" string="Token URL"/>
+                        <field name="validate_cpe_url" string="URL de consulta"/>
+                    </group>
+                </page>
+            </xpath>
+            <!-- Detracciones -->
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="default_national_bank_account_id" domain="[('partner_id', '=', partner_id),('is_bank_detraction_account','=',True)]" context="{'default_company_id':id,'default_partner_id':partner_id, 'default_is_bank_detraction_account':True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

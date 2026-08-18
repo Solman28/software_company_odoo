@@ -1,0 +1,146 @@
+<odoo>
+    <!-- Detracciones -->
+    <record id="view_form_catalog_54" model="ir.ui.view">
+        <field name="name">view.form.catalog.54</field>
+        <field name="model">sunat.catalog.54</field>
+        <field name="arch" type="xml">
+            <form string="Detracciones">
+                <sheet>
+                    <group>
+                        <group>
+                            <!-- <field name="anexo"/> -->
+                            <field name="code"/>
+                            <field name="rate"/>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Detalle">
+                            <field name="product_ids" widget="many2many">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="default_code"/>
+                                    <field name="categ_id"/>
+                                    <field name="uom_id" optional="show"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                    <label for="description"/>
+                    <field name="description" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_catalog_54" model="ir.ui.view">
+        <field name="name">view.tree.catalog.54</field>
+        <field name="model">sunat.catalog.54</field>
+        <field name="arch" type="xml">
+            <list string="Detraccion">
+                <!-- <field name="anexo"/> -->
+                <field name="name"/>
+                <field name="code"/>
+                <field name="rate"/>
+                <field name="product_ids"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_view_catalog_54" model="ir.actions.act_window">
+        <field name="name">Catg 54 - Detracciones</field>
+        <field name="res_model">sunat.catalog.54</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_tree_catalog_54"/>
+        <field name="domain">[('active','=',True)]</field>
+    </record>
+
+    <!-- Códigos de descuentos, cargos y otras deducciones -->
+    <record id="view_tree_catalog_53" model="ir.ui.view">
+        <field name="name">view.tree.catalog.53</field>
+        <field name="model">sunat.catalog.53</field>
+        <field name="arch" type="xml">
+            <list editable="top" decoration-muted="active==False">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_view_catalog_53" model="ir.actions.act_window">
+        <field name="name">Catg 53 - Descuentos,Cargos y Deducciones</field>
+        <field name="res_model">sunat.catalog.53</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_tree_catalog_53"/>
+        <field name="domain">['|',('active','=',True),('active','=',False)]</field>
+    </record>
+
+    <!--  Código de tipo de operación -->
+    <record id="view_tree_catalog_51" model="ir.ui.view">
+        <field name="name">view.tree.catalog.51</field>
+        <field name="model">sunat.catalog.51</field>
+        <field name="arch" type="xml">
+            <list editable="top" decoration-muted="active==False">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_view_catalog_51" model="ir.actions.act_window">
+        <field name="name">Catg 51 - Código de tipo de operación</field>
+        <field name="res_model">sunat.catalog.51</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_tree_catalog_51"/>
+        <field name="domain">['|',('active','=',True),('active','=',False)]</field>
+    </record>
+
+    <!--  Código de Medios de Pago -->
+    <record id="view_tree_catalog_59" model="ir.ui.view">
+        <field name="name">view.tree.catalog.59</field>
+        <field name="model">sunat.catalog.59</field>
+        <field name="arch" type="xml">
+            <list editable="top" decoration-muted="active==False">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_view_catalog_59" model="ir.actions.act_window">
+        <field name="name">Catg 59 - Medios de Pago</field>
+        <field name="res_model">sunat.catalog.59</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_tree_catalog_59"/>
+        <field name="domain">['|',('active','=',True),('active','=',False)]</field>
+    </record>
+    
+    <!-- Menús -->
+    <menuitem id="menu_sunat_catalogs" name="Catálogos de Sunat" parent="account.menu_finance_configuration">
+
+        <menuitem id="menu_sunat_catalog_51"
+                    name="Catg 51 - Código de tipo de operación"
+                    sequence="10"
+                    action="action_view_catalog_51"/>
+
+        <menuitem id="menu_sunat_catalog_53"
+                    name="Catg 53 - Descuentos,Cargos y Deducciones"
+                    sequence="20"
+                    action="action_view_catalog_53"/>
+
+        <menuitem id="menu_sunat_catalog_54"
+                    name="Catg 54 - Detracciones"
+                    sequence="30"
+                    action="action_view_catalog_54"/>
+
+        <menuitem id="menu_sunat_catalog_59"
+                    name="Catg 59 - Medios de Pago"
+                    sequence="40"
+                    action="action_view_catalog_59"/>
+    </menuitem>
+
+</odoo>

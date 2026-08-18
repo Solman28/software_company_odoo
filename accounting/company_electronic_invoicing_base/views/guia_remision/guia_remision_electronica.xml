@@ -1,0 +1,351 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- <record id="gestionit_pe_fe.view_guide_filter" model="ir.ui.view">
+        <field name="name">gestionit_pe_fe.view_guide_filter</field>
+        <field name="model">gestionit.guia_remision</field>
+        <field name="arch" type="xml">
+            <search string="Search GRE">
+                <group expand="0" string="Group By">
+                    <filter string="Conductor privado" name="group_by_private_driver" context="{'group_by': 'conductor_privado_partner_id'}"/>
+                    <filter string="Conductor público" name="group_by_public_driver" context="{'group_by': 'conductor_publico_id'}"/>
+                </group>
+                <group expand="0" string="Group By">
+                    <filter string="Vehículo privado" name="group_by_private_vehicle" context="{'group_by': 'vehiculo_privado_id'}"/>
+                    <filter string="Vehículo público" name="group_by_public_vehicle" context="{'group_by': 'vehiculo_publico_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record> -->
+
+    <record id="view_tree_guia_remision" model="ir.ui.view">
+        <field name="name">view.tree.guia.remision</field>
+        <field name="model">guia.remision</field>
+        <field name="arch" type="xml">
+            <list default_order="fecha_emision desc" delete="0">
+                <field name="name"/>
+                <field name="journal_id" optional="hide"/>
+                <field name="motivo_traslado" optional="show"/>
+                <field name="fecha_emision"/>
+                <field name="state" string="Estado"
+                    widget="badge"
+                    decoration-info="state == 'draft'"
+                    decoration-success="state == 'validated'"
+                    decoration-danger="state == 'cancel'"/>
+                <field name="estado_gre_sunat" optional="show"
+                    widget="badge"
+                    decoration-info="estado_gre_sunat in ('E', 'N', 'P')"
+                    decoration-success="estado_gre_sunat == 'A'"
+                    decoration-warning="estado_gre_sunat == 'O'"
+                    decoration-danger="estado_gre_sunat == 'R'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tree_guia_remision_remitente" model="ir.ui.view">
+        <field name="name">view.tree.guia.remision.remitente</field>
+        <field name="model">guia.remision</field>
+        <field name="arch" type="xml">
+            <list default_order="fecha_emision desc" delete="0">
+                <field name="name"/>
+                <field name="warehouse_id"/>
+                <field name="journal_id" optional="hide"/>
+                <field name="motivo_traslado" optional="show"/>
+                <field name="fecha_emision"/>
+                <field name="transport_type" optional="show"/>
+                <field name="state" string="Estado"
+                    widget="badge"
+                    decoration-info="state == 'draft'"
+                    decoration-success="state == 'validated'"
+                    decoration-danger="state == 'cancel'"/>
+                <field name="estado_gre_sunat" optional="show" 
+                    widget="badge"
+                    decoration-info="estado_gre_sunat in ('E', 'N', 'P')"
+                    decoration-success="estado_gre_sunat == 'A'"
+                    decoration-warning="estado_gre_sunat == 'O'"
+                    decoration-danger="estado_gre_sunat == 'R'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tree_guia_remision_transportista" model="ir.ui.view">
+        <field name="name">view.tree.guia.remision.transportista</field>
+        <field name="model">guia.remision</field>
+        <field name="arch" type="xml">
+            <list default_order="fecha_emision desc" delete="0">
+                <field name="name"/>
+                <field name="journal_id" optional="hide"/>
+                <field name="fecha_emision"/>
+                <field name="related_document"/>
+                <field name="guia_remitente_id"/>
+                <field name="state" string="Estado"
+                    widget="badge"
+                    decoration-info="state == 'draft'"
+                    decoration-success="state == 'validated'"
+                    decoration-danger="state == 'cancel'"/>
+                <field name="estado_gre_sunat" optional="show" 
+                    widget="badge"
+                    decoration-info="estado_gre_sunat in ('E', 'N', 'P')"
+                    decoration-success="estado_gre_sunat == 'A'"
+                    decoration-warning="estado_gre_sunat == 'O'"
+                    decoration-danger="estado_gre_sunat == 'R'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_form_guia_remision" model="ir.ui.view">
+        <field name="name">view.form.guia.remision</field>
+        <field name="model">guia.remision</field>
+        <field name="arch" type="xml">
+            <form delete="0">
+                <header>
+                    <button name="action_validate" string="Validar" type="object" help="Validación y envío de GRE a SUNAT" class="oe_highlight" invisible="state != 'draft'" confirm="¿Está seguro(a) de validar la Guía de Remisión?"/>
+                    <button name="action_cancel" string="Cancelar" type="object" help="Cancelar GRE" class="oe_highlight" invisible="state != 'draft'" confirm="¿Está seguro(a) de cancelar la Guía de Remisión?"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <div name="estado_emision" class="alert alert-success" role="alert" style="margin-bottom:0px;" invisible="estado_gre_sunat != 'E'">
+                    Este documento
+                    <bold>
+                        <a class="alert-link" href="#top" role="button">HA SIDO ENVIADO</a>
+                    </bold> 
+                </div>
+                <sheet>
+                    <div class="oe_title mb-2" name="title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id" invisible="1"/>
+                            <field name="company_partner_id" invisible="1"/>
+                            <field name="gre_type" invisible="1"/>
+                            <field name="suitable_journal_ids" invisible="1"/>
+                            <!-- <field name="suitable_vehiculo_publico_ids" invisible="1"/> -->
+                            <field name="warehouse_id" string="Facturado desde" readonly="context.get('block_warehouse') or state != 'draft'"/>
+                            <field name="journal_id" string="Serie" readonly="state != 'draft'" required="1" options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                        </group>
+                        <group>
+                            <field name="motivo_traslado" readonly="state != 'draft'" required="gre_type == 'remitente'" invisible="gre_type != 'remitente'"/>
+                            <field name="fecha_emision" readonly="state != 'draft'" required="1"/>
+                            <field name="note" string="Observaciones" readonly="state != 'draft'"/>
+                        </group>
+                    </group>
+                    <!-- Para GRE remitente -->
+                    <group string="Datos del destinatario" invisible="gre_type != 'remitente'">
+                        <group>
+                            <field name="destinatario_partner_id" readonly="state != 'draft'"/>
+                            <label for="destinatario_tipo_documento_identidad" string="Documento de identidad"/>
+                            <div>
+                                <field name="destinatario_tipo_documento_identidad" readonly="1" force_save="1" class="oe_inline"/>
+                                <span class=""> - </span>
+                                <field name="destinatario_numero_documento_identidad" placeholder="Número" class="oe_inline" readonly="1" force_save="1"/>
+                            </div>
+                            <field name="destinatario_direccion" readonly="1" string='Dirección' force_save="1" invisible="1"/>
+                            <field name="destinatario_ubigeo" readonly="1" string='Ubigeo' force_save="1" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="Datos del proveedor" invisible="motivo_traslado not in ('02','07')">
+                        <field name="proveedor_partner_id" readonly="state != 'draft'"/>
+                        <label for="proveedor_tipo_documento_identidad" string="Documento de identidad"/>
+                        <div>
+                            <field name="proveedor_tipo_documento_identidad" readonly="1" force_save="1" class="oe_inline"/>
+                            <span class=""> - </span>
+                            <field name="proveedor_numero_documento_identidad" placeholder="Número" class="oe_inline" readonly="1" force_save="1"/>
+                        </div>
+                        <field name="proveedor_direccion" readonly="1" string='Dirección' force_save="1" invisible="1"/>
+                        <field name="proveedor_ubigeo" readonly="1" string='Ubigeo' force_save="1" invisible="1"/>
+                    </group>
+                    <group string="Documentos Asociados" name="associated_documents">
+                        <field name="related_document" readonly="state != 'draft'" invisible="gre_type != 'transportista'" options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                        <field name="guia_remitente_id" readonly="state != 'draft'" invisible="related_document_code != '09'" required="related_document_code == '09'" options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"/>
+                        <field name="related_document_name" invisible="related_document_code not in ('01', '03')"/>
+                        <field name="documento_asociado" invisible="1"/>
+                        <field name="picking_ids" widget="many2many_tags" invisible="documento_asociado != 'movimiento_stock' or context.get('hide_picking_ids')" readonly="state != 'draft'" options="{'no_create': True, 'no_open': True, 'no_create_edit': True}" domain="[ ('partner_id', '=', destinatario_partner_id), ('partner_id','!=',False), ('state','!=','draft')]"/>
+                    </group>
+                    <field name="sale_order_ids" string="Ventas" invisible="1" readonly="state != 'draft'" options="{'no_create': True, 'no_open': True, 'no_create_edit': True}" domain="[ ('partner_id','=',destinatario_partner_id), ('partner_id','!=',False), ('state','!=','draft')]" mode="list">
+                        <list editable="bottom">
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="amount_total"/>
+                            <field name="state" optional="hide"/>
+                        </list>
+                    </field>
+                    <separator string='Detalle de líneas'/>
+                    <field name="guia_remision_line_ids" readonly="gre_type == 'transportista' or state != 'draft'" mode="list" force_save="1">
+                        <list editable="bottom" create="1" delete="false">
+                            <field name="product_id" string="Producto" options="{'no_create': True, 'no_edit': True, 'no_open': False}" readonly="False" force_save="1"/>
+                            <field name="description" string="Descripción" force_save="1"/>
+                            <field name="uom_id" string="UM" options="{'no_create': True, 'no_edit': True, 'no_open': False}" force_save="1"/>
+                            <field name="qty" string="Cantidad" force_save="1"/>
+                            <!-- <field name="weight"/> -->
+                        </list>
+                    </field>
+                    <!-- Para GRE transportista -->
+                    <group string="Datos del destinatario" invisible="gre_type != 'transportista'">
+                        <group>
+                            <field name="destinatario_partner_id" readonly="1" force_save="1"/>
+                            <label for="destinatario_tipo_documento_identidad" string="Documento de identidad"/>
+                            <div>
+                                <field name="destinatario_tipo_documento_identidad" readonly="1" force_save="1" class="oe_inline"/>
+                                <span class=""> - </span>
+                                <field name="destinatario_numero_documento_identidad" placeholder="Número" class="oe_inline" readonly="1" force_save="1"/>
+                            </div>
+                            <field name="destinatario_direccion" readonly="1" string='Dirección' force_save="1" invisible="1"/>
+                            <field name="destinatario_ubigeo" readonly="1" string='Ubigeo' force_save="1" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="Datos del traslado" name="shipping">
+                        <group>
+                            <field name="fecha_inicio_traslado" string="Fecha de traslado" readonly="state != 'draft'"/>
+                            <field name="peso_bruto_uom" readonly="gre_type == 'transportista' or state != 'draft'" required="True" force_save="1"/>
+                            <field name="peso_bruto_total" readonly="gre_type == 'transportista' or state != 'draft'" required="True" force_save="1"/>
+                        </group>
+                        <group>
+                            <field name="numero_bultos" invisible="motivo_traslado != '09'"/>
+                            <field name="transport_type" widget="radio" required="gre_type == 'remitente'" readonly="state != 'draft'" invisible="gre_type != 'remitente'"/>
+                        </group>
+                    </group>
+                    <group name="route">
+                        <group string="Punto de partida">
+                            <field name="partner_direccion_partida_id" string="Contacto emisor" readonly="gre_type == 'transportista' or state != 'draft'" force_save="1"/>
+                            <field name="direccion_partida_id" string="Dirección de Partida" domain="['|',('parent_id', '=', partner_direccion_partida_id), ('id','=', partner_direccion_partida_id)]" readonly="gre_type == 'transportista' or state != 'draft'" options="{'no_create':True,'no_create_edit':True, 'no_quick_create':True, 'no_open':True}" required="True" force_save="1"/>
+                            <field name="lugar_partida_direccion" widget="text" force_save="1" required="True" readonly="gre_type == 'transportista' or state != 'draft'"/>
+                            <field name="lugar_partida_distrito" string="Distrito" options="{'no_create':True, 'no_open':True}" force_save="1" required="True" readonly="state != 'draft'"/>
+                            <field name="lugar_partida_ubigeo" string="Ubigeo" force_save="1" required="True" readonly="1"/>
+                        </group>
+                        <group string="Punto de llegada">
+                            <field name="partner_direccion_llegada_id" string="Contacto destinatario" readonly="gre_type == 'transportista' or state != 'draft'" force_save="1"/>
+                            <field name="direccion_llegada_id" string="Dirección de Llegada" domain="['|',('parent_id', '=', partner_direccion_llegada_id), ('id','=', partner_direccion_llegada_id)]" required="True" readonly="gre_type == 'transportista' or state != 'draft'" options="{'no_create':True, 'no_open':True}" force_save="1"/>
+                            <field name="lugar_llegada_direccion" widget="text" force_save="1" required="True" readonly="gre_type == 'transportista' or state != 'draft'"/>
+                            <field name="lugar_llegada_distrito" string="Distrito" options="{'no_create':True, 'no_open':True}" force_save="1" required="True" readonly="state != 'draft'"/>
+                            <field name="lugar_llegada_ubigeo" string="Ubigeo" force_save="1" required="True" readonly="1"/>
+                        </group>
+                    </group>
+                    <group name="transport_information" string="Datos del transporte">
+                        <group name="public_transport" string="Transporte Público" invisible="transport_type != '01' or gre_type == 'transportista'">
+                            <field name="suitable_transporte_partner_mtc_ids" invisible="1"/>
+                            <field name="transporte_partner_id" options="{'no_create_edit': True, 'no_quick_create':True, 'no_open':True}" domain="[('is_transport_company', '=', True)]" required="transport_type == '01'" readonly="state != 'draft'"/>
+                            <field name="transporte_partner_mtc_id" string="Número de registro MTC" readonly="state != 'draft'"/>
+                            <field name="autorization_number_transporte_partner_id" string="Número de autorización" readonly="state != 'draft'"/>
+                            <!-- <field name="vehiculo_publico_id" domain="[('id', 'in', suitable_vehiculo_publico_ids)]" readonly="state != 'draft'"/>
+                            <field name="conductor_publico_id" domain="[('is_driver', '=', True)]" readonly="state != 'draft'"/>
+                            <field name="vehiculo_publico_secundario_id" options="{'no_create_edit': True, 'no_quick_create':True, 'no_open':True}" readonly="state != 'draft'"/>
+                            <field name="conductor_publico_secundario_id" domain="[('is_driver', '=', True)]" options="{'no_create_edit': True, 'no_quick_create':True, 'no_open':True}" readonly="state != 'draft'"/> -->
+                        </group>
+                        <group name="vehicle_public_transport" string="Datos del vehículo" invisible="transport_type != '01' or gre_type != 'remitente'">
+                            <field name="vehiculo_publico_id" string="Vehiculo principal" options="{'no_create_edit': True, 'no_quick_create':True, 'no_open':True}" required="transport_type == '01' and gre_type == 'remitente'" readonly="state != 'draft'"/>
+                            <field name="vehiculo_publico_mtc_id" readonly="state != 'draft'"/>
+                            <field name="tuce_chv_vehiculo_publico" string="TUCE o Certificado de Habilitación Vehicular" required="vehiculo_publico_id" readonly="state != 'draft'"/>
+                            <field name="vehiculo_publico_secundario_id" string="Vehiculo secundario" options="{'no_create_edit': True, 'no_quick_create':True, 'no_open':True}" readonly="state != 'draft'"/>
+                            <field name="vehiculo_publico_secundario_mtc_id" readonly="state != 'draft'"/>
+                            <field name="tuce_chv_vehiculo_publico_secundario" string="TUCE o Certificado de Habilitación Vehicular" required="vehiculo_publico_secundario_id" readonly="state != 'draft'"/>
+                        </group>
+                        <group string="Datos del conductor" invisible="transport_type != '01' or gre_type != 'remitente'">
+                            <field name="conductor_publico_id" string="Conductor principal" domain="[('is_driver', '=', True)]" options="{'no_create_edit': True, 'no_quick_create':True, 'no_open':True}" required="transport_type == '01' and gre_type == 'remitente'" readonly="state != 'draft'"/>
+                            <field name="conductor_publico_secundario_id" string="Conductor secundario" domain="[('is_driver', '=', True)]" options="{'no_create_edit': True, 'no_quick_create':True, 'no_open':True}" readonly="state != 'draft'"/>
+                        </group>
+                        <group name="vehicle_private_transport" string="Datos del vehículo" invisible="transport_type != '02'">
+                            <field name="suitable_vehiculo_privado_mtc_ids" invisible="1"/>
+                            <field name="suitable_vehiculo_secundario_mtc_ids" invisible="1"/>
+                            <field name="vehiculo_privado_id" string="Vehiculo principal" domain="[('is_public_vehicle', '=', False)]" readonly="state != 'draft'" force_save="1" required="transport_type == '02'" />
+                            <!-- <field name="tuce_chv_vehiculo_privado" string="TUCE o Certificado de Habilitación Vehicular" required="vehiculo_privado_id" readonly="state != 'draft'"/> -->
+                            <field name="vehiculo_privado_mtc_id" readonly="state != 'draft'"/>
+                            <field name="vehiculo_privado_secundario_id" string="Vehiculo secundario" domain="[('is_public_vehicle', '=', False)]" readonly="state != 'draft'" force_save="1"/>
+                            <field name="vehiculo_privado_secundario_mtc_id" readonly="state != 'draft'"/>
+                            <!-- <field name="tuce_chv_vehiculo_privado_secundario" string="TUCE o Certificado de Habilitación Vehicular" required="vehiculo_privado_secundario_id" readonly="state != 'draft'"/> -->
+                        </group>
+                        <group name="driver_private_transport" string="Datos del conductor" invisible="transport_type != '02'">
+                            <field name="conductor_privado_id" string="Conductor principal" domain="[('is_driver', '=', True)]" readonly="state != 'draft'" force_save="1" required="transport_type == '02'"/>
+                            <field name="conductor_privado_secundario_id" string="Conductor secundario" domain="[('is_driver', '=', True)]" readonly="state != 'draft'" force_save="1"/>
+                        </group>
+                        <!-- Para GRE Transportista -->
+                        <group string="Datos de la empresa de transporte" invisible="gre_type != 'transportista'">
+                            <field name="suitable_vehiculo_publico_mtc_ids" invisible="1"/>
+                            <field name="suitable_vehiculo_publico_secundario_mtc_ids" invisible="1"/>
+                            <field name="transporte_partner_id" options="{'no_create_edit': True, 'no_quick_create':True, 'no_open':True}" domain="[('is_transport_company', '=', True)]" readonly="1" force_save="1" required="gre_type == 'transportista'"/>
+                            <field name="transporte_partner_mtc_id" string="Número de registro MTC" readonly="1" force_save="1"/>
+                        </group>
+                        <group string="Datos del vehículo" invisible="gre_type != 'transportista'">
+                            <field name="vehiculo_publico_id" string="Vehiculo principal" options="{'no_create_edit': True, 'no_quick_create':True, 'no_open':True}" required="gre_type == 'transportista'" readonly="state != 'draft'"/>
+                            <field name="vehiculo_publico_mtc_id" readonly="state != 'draft'"/>
+                            <field name="tuce_chv_vehiculo_publico" string="TUCE o Certificado de Habilitación Vehicular" required="vehiculo_publico_id" readonly="state != 'draft'"/>
+                            <field name="vehiculo_publico_secundario_id" string="Vehiculo secundario" options="{'no_create_edit': True, 'no_quick_create':True, 'no_open':True}" readonly="state != 'draft'"/>
+                            <field name="vehiculo_publico_secundario_mtc_id" readonly="state != 'draft'"/>
+                            <field name="tuce_chv_vehiculo_publico_secundario" string="TUCE o Certificado de Habilitación Vehicular" required="vehiculo_publico_secundario_id" readonly="state != 'draft'"/>
+                        </group>
+                        <group string="Datos del conductor" invisible="gre_type != 'transportista'">
+                            <field name="conductor_publico_id" string="Conductor principal" domain="[('is_driver', '=', True)]" options="{'no_create_edit': True, 'no_quick_create':True, 'no_open':True}" required="gre_type == 'transportista'" readonly="state != 'draft'"/>
+                            <field name="conductor_publico_secundario_id" string="Conductor secundario" domain="[('is_driver', '=', True)]" options="{'no_create_edit': True, 'no_quick_create':True, 'no_open':True}" readonly="state != 'draft'"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="SUNAT">
+                            <group name="guide_validity">
+                                <group>
+                                    <field name="estado_gre_sunat" string="Estado Emisión SUNAT" help="Estado actual de envío a SUNAT"/>
+                                    <!-- <field name="estado_sunat" string="Estado SUNAT" readonly="True"/> -->
+                                </group>
+                                <group>
+                                    <field name="consulta_validez_observaciones"/>
+                                </group>
+                            </group>
+                            <group string="Registros de envío a SUNAT">
+                                <group>
+                                    <field name="current_log_status_id" string="Envío actual" readonly="1" force_save="1"/>
+                                </group>
+                            </group>
+                            <field name="account_log_status_ids" readonly="1">
+                                <list decoration-bf="is_last_log == True" decoration-muted="is_last_log == False">
+                                    <field name="name"/>
+                                    <field name="status"/>
+                                    <field name="create_date" string="Fecha de creación"/>
+                                    <field name="is_last_log" invisible="1"/>
+                                    <!-- <button name="action_set_last_log" type="object" string="Registro actual" invisible="is_last_log"/>
+                                    <button name="action_set_last_log_unlink" type="object" string="Dejar" invisible="not is_last_log"/> -->
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <!-- Attachment preview -->
+                <div class="o_attachment_preview"/>
+                <!-- Chatter -->
+                <chatter reload_on_attachment="True"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_guia_remision" model="ir.actions.act_window">
+        <field name="name">Guia de remisión</field>
+        <field name="res_model">guia.remision</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'list', 'view_id': ref('company_electronic_invoicing_base.view_tree_guia_remision')})]"/>
+        <field name="view_mode">list,form</field>
+        <!-- <field name="context">{"ubigeo_search":True}</field> -->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea tus guias de remisión en esta sección
+            </p>
+        </field>
+    </record>
+
+    <record id="action_view_guia_remision_remitente" model="ir.actions.act_window">
+        <field name="name">Guia de remisión remitente</field>
+        <field name="res_model">guia.remision</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'list', 'view_id': ref('company_electronic_invoicing_base.view_tree_guia_remision_remitente')})]"/>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('gre_type', '=', 'remitente')]</field>
+        <field name="context">{'create': False, 'delate': False}</field>
+    </record>
+
+    <record id="action_view_guia_remision_transportista" model="ir.actions.act_window">
+        <field name="name">Guia de remisión transportista</field>
+        <field name="res_model">guia.remision</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'list', 'view_id': ref('company_electronic_invoicing_base.view_tree_guia_remision_transportista')})]"/>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('gre_type', '=', 'transportista')]</field>
+       <field name="context">{'create': False, 'delate': False}</field>
+    </record>
+</odoo>
