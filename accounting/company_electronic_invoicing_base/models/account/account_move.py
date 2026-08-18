@@ -223,7 +223,7 @@ class AccountMove(models.Model):
 					"Ninguna de las Fechas de Pago de las Cuotas debe ser mayor a la Fecha de Vencimiento del Documento.")
 
 	# [ Métodos Computados ]
-	@api.depends('move_type', 'company_id')
+	@api.depends('move_type', 'company_id', 'company_id.partner_id.bank_ids.show_in_invoice')
 	def _compute_partner_bank_ids(self):
 		for move in self:
 			if move.move_type in ('out_invoice', 'out_refund'):
