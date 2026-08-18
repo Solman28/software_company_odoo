@@ -43,11 +43,26 @@ class AccountTax(models.Model):
     )
 
 
+# Identificador interno usado por el módulo (get_amount_totals) para clasificar
+# los grupos de impuesto en el resumen del comprobante electrónico.
+EDI_TAX_GROUP_CODE = [
+    ('IGV', 'IGV - Impuesto General a las Ventas (operación gravada)'),
+    ('EXO', 'EXO - Operación Exonerada del IGV'),
+    ('INA', 'INA - Operación Inafecta al IGV'),
+    ('ISC', 'ISC - Impuesto Selectivo al Consumo'),
+    ('ICBPER', 'ICBPER - Impuesto a las Bolsas Plásticas'),
+    ('FACTURA GRATUITA', 'FACTURA GRATUITA - Operación Gratuita (sin cobro)'),
+]
+
+
 class AccountTaxGroup(models.Model):
     _inherit = 'account.tax.group'
 
-    l10n_pe_edi_code = fields.Char(
+    l10n_pe_edi_code = fields.Selection(
+        selection=EDI_TAX_GROUP_CODE,
         string="Código EDI",
-        help="Identificador del grupo de impuesto usado en la facturación electrónica "
-             "(IGV, EXO, INA, ISC, ICBPER, FACTURA GRATUITA)."
+        help="Clasificación del grupo de impuesto para el resumen del comprobante electrónico. "
+             "Usar IGV para el grupo del IGV 18%, EXO/INA para exoneradas/inafectas, ISC para "
+             "el impuesto selectivo, ICBPER para bolsas plásticas y FACTURA GRATUITA para "
+             "operaciones sin cobro (bonificaciones, muestras, etc.).",
     )

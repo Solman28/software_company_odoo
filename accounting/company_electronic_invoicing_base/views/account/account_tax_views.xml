@@ -18,7 +18,7 @@
         <field name="inherit_id" ref="account.view_tax_group_form"/>
         <field name="arch" type="xml">
             <field name="sequence" position="after">
-                <field name="l10n_pe_edi_code" string="Código EDI (IGV/EXO/INA/ISC/ICBPER)"/>
+                <field name="l10n_pe_edi_code" string="Código EDI"/>
             </field>
         </field>
     </record>
