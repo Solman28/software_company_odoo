@@ -396,9 +396,11 @@ class GuiaRemision(models.Model):
 				domain.append(('invoice_type_code', '=', '31'))
 
 			all_journal_ids = self.env['account.journal'].search(domain)
-			if record.warehouse_id:
-				wh_journal_ids = record.warehouse_id.journal_ids.filtered(lambda j:j.id in all_journal_ids.ids)
-				record.suitable_journal_ids = wh_journal_ids
+			# El almacén solo restringe la lista si tiene "Series permitidas"
+			# configuradas explícitamente; si no, se listan todas las series
+			# electrónicas de la compañía para ese tipo de GRE.
+			if record.warehouse_id and record.warehouse_id.journal_ids:
+				record.suitable_journal_ids = record.warehouse_id.journal_ids.filtered(lambda j:j.id in all_journal_ids.ids)
 			else:
 				record.suitable_journal_ids = all_journal_ids
 	

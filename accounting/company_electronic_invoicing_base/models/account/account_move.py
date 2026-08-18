@@ -254,7 +254,17 @@ class AccountMove(models.Model):
 		for record in self:
 			journal_type = record.invoice_filter_type_domain or record.journal_type or 'general'
 			if record.move_type in ['out_invoice','out_refund']:
-				journal_ids = record.warehouse_id.journal_ids.filtered(lambda r: r.invoice_type_code == record.invoice_type_code and r.type == journal_type)
+				domain = [
+					('company_id', '=', record.company_id.id),
+					('invoice_type_code', '=', record.invoice_type_code),
+					('type', '=', journal_type),
+				]
+				journal_ids = self.env["account.journal"].search(domain)
+				# El almacén solo restringe la lista si tiene "Series permitidas"
+				# configuradas explícitamente; si no, se listan todas las series
+				# electrónicas de la compañía para ese tipo de comprobante.
+				if record.warehouse_id and record.warehouse_id.journal_ids:
+					journal_ids = journal_ids.filtered(lambda j: j in record.warehouse_id.journal_ids)
 				record.suitable_journal_ids = journal_ids
 			elif record.move_type in ['in_invoice', 'in_refund', 'in_receipt']:
 				domain = [('type','=',journal_type)]
