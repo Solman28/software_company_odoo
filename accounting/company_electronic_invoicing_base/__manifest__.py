@@ -26,6 +26,7 @@
         "views/stock/stock_picking_views.xml",
         "views/sale/sale_order_views.xml",
         "views/account/account_journal_views.xml",
+        "views/account/account_tax_views.xml",
         "views/account/view_acc_log_status.xml",
         "views/account/factura_views.xml",
         "views/account/boleta_views.xml",
