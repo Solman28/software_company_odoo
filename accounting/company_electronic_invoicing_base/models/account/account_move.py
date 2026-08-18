@@ -1037,8 +1037,13 @@ class AccountMove(models.Model):
 						f"* El nombre del producto {name} debe tener hasta 500 caracteres.")
 				
 				# Unidades de medida
+				# Los productos tipo Servicio siempre se envían con código 'ZZ'
+				# (ver pecano_fact/utils.py), sin importar la unidad de medida
+				# elegida, así que no exigimos el código SUNAT en la unidad acá.
 				uom = line.product_uom_id
-				if not uom:
+				if line.product_id.type == 'service':
+					pass
+				elif not uom:
 					errors.append(f"* El producto {name} no tiene unidad de medida seleccionada.")
 				else:
 					sunat_uom_code = (uom.l10n_pe_edi_measure_unit_code.code or '').strip()
