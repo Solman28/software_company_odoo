@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_uom_form_view_pe_edi" model="ir.ui.view">
+        <field name="name">uom.uom.form.pe.edi</field>
+        <field name="model">uom.uom</field>
+        <field name="inherit_id" ref="uom.product_uom_form_view"/>
+        <field name="arch" type="xml">
+            <group name="uom_details" position="inside">
+                <field name="l10n_pe_edi_measure_unit_code" string="Código de unidad de medida (SUNAT)"/>
+                <field name="code_dam" string="Código DAM/DS (exportación)"/>
+            </group>
+        </field>
+    </record>
+
+    <record id="product_uom_tree_view_pe_edi" model="ir.ui.view">
+        <field name="name">uom.uom.list.pe.edi</field>
+        <field name="model">uom.uom</field>
+        <field name="inherit_id" ref="uom.product_uom_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="l10n_pe_edi_measure_unit_code" string="Código SUNAT"/>
+            </field>
+        </field>
+    </record>
+</odoo>

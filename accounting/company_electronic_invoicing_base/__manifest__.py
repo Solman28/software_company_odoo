@@ -22,6 +22,7 @@
         "security/res_groups.xml",
         "views/settings/res_config_settings.xml",
         "views/product/product_views.xml",
+        "views/product/uom_views.xml",
         "views/stock/stock_warehouse_views.xml",
         "views/stock/stock_picking_views.xml",
         "views/sale/sale_order_views.xml",
